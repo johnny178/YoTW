@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #282631;
-    color: #C7C3C0;
+    /* color: #C7C3C0; */
     font-size: 16px;
   }
 `;

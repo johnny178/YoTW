@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAllScenicSpots } from '../api';
+import { AttractionList, FilterBar } from '../components';
 
 const Attraction = () => {
+  const [scenicSpotsData, setScenicSpotsData] = useState([]);
+
   useEffect(() => {
     const callApi = async () => {
       let searchParam = new URLSearchParams([
@@ -9,13 +12,19 @@ const Attraction = () => {
         ['format', 'JSON'],
       ]);
       let resp = await getAllScenicSpots(searchParam.toString());
+      setScenicSpotsData(resp.data);
       console.log(resp.data);
     };
     callApi();
   }, []);
 
+
+
   return (
-    <div>Hello</div>
+    <>
+      <FilterBar />
+      <AttractionList data={scenicSpotsData} />
+    </>
   );
 };
 

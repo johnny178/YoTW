@@ -29,9 +29,13 @@ export const Option = styled.option`
 
 export const GridCont = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(2, minmax(15rem, 1fr));
   margin: 3% 0px;
   grid-gap: 30px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(1, minmax(15rem, 1fr));
+  }
 `;
 
 export const Item = styled.div`
@@ -41,10 +45,10 @@ export const Item = styled.div`
 `;
 
 export const Image = styled.img`
-  object-fit: contain;
-  max-width: 40%;
-  height: auto;
   align-self: center;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const DetailCont = styled.div`

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useRef, useCallback } from 'react';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
+import useHttp from '../../hooks/useHttp';
 import {
   Container,
   FilterCont,
@@ -17,48 +19,57 @@ import {
 } from './styles';
 
 const FilterSection = () => {
-  const [scenicSpotsData, setScenicSpotsData] = useState([]);
+  // const [scenicSpotsData, setScenicSpotsData] = useState([]);
   const [countrySelect, setCountrySelect] = useState('全台');
   const [searchValue, setSearchValue] = useState('');
+  const [pageNumber, setPageNumber] = useState(1);
 
-  useEffect(() => {
-    const callApi = async () => {
-      getScenicSpotsData();
-    };
-    callApi();
-  }, [countrySelect]);
+  const callAPI = async (filterData, searchParam) => {
+    let resp = [];
 
-  useEffect(() => {
-    const inputDelay = setTimeout(() => {
-      console.log(searchValue);
-      getScenicSpotsData(searchValue);
-    }, 1000);
+    if (filterData === '全台') {
+      resp = await getAllScenicSpots(searchParam.toString());
+    } else {
+      resp = await getSpecificScenicSpots(countryDic[filterData], searchParam.toString());
+    }
+    return resp;
+  };
 
-    return () => {
-      clearTimeout(inputDelay);
-    };
-  }, [searchValue]);
+  const {
+    data: scenicSpots,
+    hasMore,
+    loading,
+    error
+  } = useHttp(searchValue, countrySelect, pageNumber, callAPI);
 
-  const getScenicSpotsData = async (searchValue = '') => {
-    let filterName = searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
-    let searchParam = new URLSearchParams([
-      ['$top', 50],
-      ['$filter', `Picture/PictureUrl1 ne null${filterName}`],
-      ['$format', 'JSON'],
-    ]);
+  const observer = useRef();
+  const lastScenicSpotsElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPageNumber(prevPageNumber => prevPageNumber + 1);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
 
-    // searchValue.length !== 0 && searchParam.set('$filter', `contains(NAME,'${searchValue}')`);
-    let resp = countrySelect === '全台' ?
-      await getAllScenicSpots(searchParam.toString()) :
-      await getSpecificScenicSpots(countryDic[countrySelect], searchParam.toString());
-    setScenicSpotsData(resp.data);
+  const handleSearch = e => {
+    setSearchValue(e.target.value);
+    setPageNumber(1);
+  };
+
+  const handleFilter = e => {
+    setCountrySelect(e.target.value);
+    setSearchValue('');
+    setPageNumber(1);
   };
 
   const renderScenicSpots = () => (
-    scenicSpotsData.map(item => {
+    scenicSpots.map((item, index) => {
       if (item?.Picture?.PictureUrl1.includes('210.69')) return;
       return (
-        <Item key={item.ID}>
+        <Item ref={scenicSpots.length - 3 === index ? lastScenicSpotsElementRef : null} key={item.ID}>
           <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
           <DetailCont>
             <Name>{item?.Name?.replaceAll('.', '')}</Name>
@@ -73,8 +84,8 @@ const FilterSection = () => {
     <Container>
       <FilterCont>
         <FilterForm >
-          <Searchbar type="text" value={searchValue} onChange={e => setSearchValue(e.target.value)} />
-          <Select value={countrySelect} onChange={e => setCountrySelect(e.target.value)}>
+          <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
+          <Select value={countrySelect} onChange={e => handleFilter(e)}>
             {arrCountryName.map((item, index) => <Option key={index} value={item}>{item}</Option>)}
           </Select>
         </FilterForm>

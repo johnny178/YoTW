@@ -1,35 +1,57 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
+  padding: 3% 5%;
+`;
+
+export const FilterCont = styled.div`
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+`;
+
+export const FilterForm = styled.form`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Searchbar = styled.input`
+  background-color: white;
+`;
+
+export const Select = styled.select`
+  margin-left: 10px;
+`;
+
+export const Option = styled.option`
+  margin-left: 10px;
+`;
+
+export const GridCont = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-template-rows: repeat(auto-fit, 130px);
-  margin: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: 3% 0px;
   grid-gap: 30px;
 `;
 
 export const Item = styled.div`
   display: flex;
   flex-direction: row;
-  /* padding: 20px 30px; */
   background-color: gray;
 `;
 
 export const Image = styled.img`
   object-fit: contain;
-  /* height: 50%; */
-  width: 200px;
-  /* width: 10px; */
+  max-width: 40%;
+  height: auto;
   align-self: center;
 `;
 
 export const DetailCont = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-shrink: 0; */
   margin-left: 20px;
   padding: 20px;
-  /* background-color: yellow; */
 `;
 
 export const Name = styled.h1`
@@ -40,6 +62,4 @@ export const Name = styled.h1`
 export const Description = styled.p`
   font-size: 12px;
 `;
-
-
 

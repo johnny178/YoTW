@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './pages/Home';
+import ScenicSpots from './containers/ScenicSpots';
 
 function App() {
   return (
-    <Home />
+    <ScenicSpots />
   );
 }
 

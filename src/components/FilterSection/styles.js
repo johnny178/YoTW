@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   padding: 3% 5%;
@@ -38,7 +39,7 @@ export const GridCont = styled.div`
   }
 `;
 
-export const Item = styled.div`
+export const Item = styled(Link)`
   display: flex;
   flex-direction: row;
   background-color: gray;
@@ -61,9 +62,11 @@ export const DetailCont = styled.div`
 export const Name = styled.h1`
   margin-bottom: 30px;
   font-size: 16px;
+  color: black;
 `;
 
 export const Description = styled.p`
   font-size: 12px;
+  color: black;
 `;
 

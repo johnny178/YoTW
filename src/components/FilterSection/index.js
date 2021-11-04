@@ -19,7 +19,6 @@ import {
 } from './styles';
 
 const FilterSection = () => {
-  // const [scenicSpotsData, setScenicSpotsData] = useState([]);
   const [countrySelect, setCountrySelect] = useState('全台');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
@@ -68,7 +67,11 @@ const FilterSection = () => {
     scenicSpots.map((item, index) => {
       if (item?.Picture?.PictureUrl1.includes('210.69')) return;
       return (
-        <Item ref={scenicSpots.length - 3 === index ? lastScenicSpotsElementRef : null} key={item.ID}>
+        <Item
+          ref={scenicSpots.length - 3 === index ? lastScenicSpotsElementRef : null}
+          key={item.ID}
+          to={item.ID}
+        >
           <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
           <DetailCont>
             <Name>{item?.Name?.replaceAll('.', '')}</Name>

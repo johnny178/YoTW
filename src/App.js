@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from './components';
+import { NavigationBar } from './components';
 import Activity from './containers/Activity';
 import Hotels from './containers/Hotels';
 import Restaurant from './containers/Restaurant';
@@ -9,7 +9,8 @@ import ScenicSpots from './containers/ScenicSpots';
 
 function App() {
   return (
-    <Layout>
+    <>
+      <NavigationBar />
       <Routes>
         <Route path='YoTW' element={<ScenicSpots />} />
         <Route path='scenicSpots' element={<ScenicSpots />} />
@@ -17,7 +18,7 @@ function App() {
         <Route path='activities' element={<Activity />} />
         <Route path='restaurant' element={<Restaurant />} />
       </Routes>
-    </Layout>
+    </>
   );
 }
 

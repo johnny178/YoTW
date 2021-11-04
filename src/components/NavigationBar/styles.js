@@ -24,8 +24,14 @@ export const NavBtnCont = styled.div`
 export const NavBtn = styled(NavLink)`
   color: white;
   font-size: 20px;
+  padding: 2px 0;
   
   &:not(:last-child) {
     margin-right: 20px;
+  }
+
+  &.${({ activeClassName }) => activeClassName} {
+    border-bottom: 3px solid #FFFF6F;
+    color: #FFFF6F;
   }
 `;

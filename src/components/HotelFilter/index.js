@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
-import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
+import { getAllHotels, getSpecificHotels } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
 import useHttp from '../../hooks/useHttp';
 import {
@@ -18,8 +18,7 @@ import {
   Name
 } from './styles';
 
-const FilterSection = () => {
-  // const [scenicSpotsData, setScenicSpotsData] = useState([]);
+const HotelFilter = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
@@ -28,22 +27,22 @@ const FilterSection = () => {
     let resp = [];
 
     if (filterData === '全台') {
-      resp = await getAllScenicSpots(searchParam.toString());
+      resp = await getAllHotels(searchParam.toString());
     } else {
-      resp = await getSpecificScenicSpots(countryDic[filterData], searchParam.toString());
+      resp = await getSpecificHotels(countryDic[filterData], searchParam.toString());
     }
     return resp;
   };
 
   const {
-    data: scenicSpots,
+    data: hotels,
     hasMore,
     loading,
     error
   } = useHttp(searchValue, countrySelect, pageNumber, callAPI);
 
   const observer = useRef();
-  const lastScenicSpotsElementRef = useCallback(node => {
+  const lastHotelsElementRef = useCallback(node => {
     if (loading) return;
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
@@ -64,15 +63,17 @@ const FilterSection = () => {
     setPageNumber(1);
   };
 
-  const renderScenicSpots = () => (
-    scenicSpots.map((item, index) => {
+  const renderHotels = () => (
+    hotels.map((item, index) => {
       if (item?.Picture?.PictureUrl1.includes('210.69')) return;
+      let description = item?.Description?.length > 50 ? (item?.Description?.slice(0, 50) ?? '') + '...' : item?.Description;
+
       return (
-        <Item ref={scenicSpots.length - 3 === index ? lastScenicSpotsElementRef : null} key={item.ID}>
+        <Item ref={hotels.length - 3 === index ? lastHotelsElementRef : null} key={item.ID}>
           <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
           <DetailCont>
             <Name>{item?.Name?.replaceAll('.', '')}</Name>
-            <Description >{(item?.DescriptionDetail?.slice(0, 50) ?? '') + '...'}</Description>
+            <Description >{description}</Description>
           </DetailCont>
         </Item>
       );
@@ -90,10 +91,10 @@ const FilterSection = () => {
         </FilterForm>
       </FilterCont>
       <GridCont>
-        {renderScenicSpots()}
+        {renderHotels()}
       </GridCont>
     </Container>
   );
 };
 
-export default FilterSection;
+export default HotelFilter;

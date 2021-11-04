@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/YoTW/static/js/main.70ec412c.chunk.js",
-    "main.js.map": "/YoTW/static/js/main.70ec412c.chunk.js.map",
+    "main.js": "/YoTW/static/js/main.52065c9e.chunk.js",
+    "main.js.map": "/YoTW/static/js/main.52065c9e.chunk.js.map",
     "runtime-main.js": "/YoTW/static/js/runtime-main.f0225c94.js",
     "runtime-main.js.map": "/YoTW/static/js/runtime-main.f0225c94.js.map",
-    "static/js/2.99734c82.chunk.js": "/YoTW/static/js/2.99734c82.chunk.js",
-    "static/js/2.99734c82.chunk.js.map": "/YoTW/static/js/2.99734c82.chunk.js.map",
+    "static/js/2.65cf832b.chunk.js": "/YoTW/static/js/2.65cf832b.chunk.js",
+    "static/js/2.65cf832b.chunk.js.map": "/YoTW/static/js/2.65cf832b.chunk.js.map",
     "index.html": "/YoTW/index.html",
-    "static/js/2.99734c82.chunk.js.LICENSE.txt": "/YoTW/static/js/2.99734c82.chunk.js.LICENSE.txt"
+    "static/js/2.65cf832b.chunk.js.LICENSE.txt": "/YoTW/static/js/2.65cf832b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f0225c94.js",
-    "static/js/2.99734c82.chunk.js",
-    "static/js/main.70ec412c.chunk.js"
+    "static/js/2.65cf832b.chunk.js",
+    "static/js/main.52065c9e.chunk.js"
   ]
 }

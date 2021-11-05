@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/YoTW/static/js/main.a1b372b3.chunk.js",
-    "main.js.map": "/YoTW/static/js/main.a1b372b3.chunk.js.map",
+    "main.js": "/YoTW/static/js/main.f0688102.chunk.js",
+    "main.js.map": "/YoTW/static/js/main.f0688102.chunk.js.map",
     "runtime-main.js": "/YoTW/static/js/runtime-main.f0225c94.js",
     "runtime-main.js.map": "/YoTW/static/js/runtime-main.f0225c94.js.map",
     "static/js/2.65cf832b.chunk.js": "/YoTW/static/js/2.65cf832b.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.f0225c94.js",
     "static/js/2.65cf832b.chunk.js",
-    "static/js/main.a1b372b3.chunk.js"
+    "static/js/main.f0688102.chunk.js"
   ]
 }

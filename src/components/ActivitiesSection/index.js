@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { getAllActivities, getSpecificActivities } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
+import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
 import {
   Container,
@@ -23,13 +24,27 @@ const ActivitiesSection = () => {
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
 
-  const callAPI = async (filterData, searchParam) => {
-    let resp = [];
+  const setFilterName = () => {
+    let name = '';
 
-    if (filterData === '全台') {
+    name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
+    return name;
+  };
+
+  const callAPI = async (pageNumber) => {
+    let resp = [];
+    let filterName = setFilterName();
+    let searchParam = new URLSearchParams([
+      ['$top', PAGE_NUM],
+      ['$filter', `Picture/PictureUrl1 ne null${filterName}`],
+      ['$skip', (pageNumber - 1) * PAGE_NUM],
+      ['$format', 'JSON'],
+    ]);
+
+    if (countrySelect === '全台') {
       resp = await getAllActivities(searchParam.toString());
     } else {
-      resp = await getSpecificActivities(countryDic[filterData], searchParam.toString());
+      resp = await getSpecificActivities(countryDic[countrySelect], searchParam.toString());
     }
     return resp;
   };

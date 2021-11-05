@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { PAGE_NUM } from '../constants/pageData';
 
-const PAGE_NUM = 30;
-export default function useHttp(query, filterData, pageNumber, callAPI) {
+export default function useHttp(query = '', filterData = '', pageNumber = 1, callAPI = async () => { }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
@@ -15,17 +15,9 @@ export default function useHttp(query, filterData, pageNumber, callAPI) {
     setLoading(true);
     setError(false);
 
-    let filterName = query.length !== 0 ? ` and contains(NAME,'${query}')` : '';
-    let searchParam = new URLSearchParams([
-      ['$top', PAGE_NUM],
-      ['$filter', `Picture/PictureUrl1 ne null${filterName}`],
-      ['$skip', (pageNumber - 1) * PAGE_NUM],
-      ['$format', 'JSON'],
-    ]);
-
     const updateData = async () => {
       try {
-        let resp = await callAPI(filterData, searchParam);
+        let resp = await callAPI(pageNumber);
 
         setData(prevData => { return [...prevData, ...resp.data]; });
         setHasMore(resp.data.length === PAGE_NUM);
@@ -43,6 +35,5 @@ export default function useHttp(query, filterData, pageNumber, callAPI) {
       clearTimeout(delay);
     };
   }, [query, filterData, pageNumber]);
-
   return { loading, error, data, hasMore };
 }

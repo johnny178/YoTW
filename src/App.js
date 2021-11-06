@@ -12,7 +12,7 @@ function App() {
     <>
       <NavigationBar />
       <Routes>
-        <Route path='YoTW' element={<ScenicSpots />} />
+        <Route path='/' element={<ScenicSpots />} />
         <Route path='scenicSpots' element={<ScenicSpots />} />
         <Route path='hotels' element={<Hotels />} />
         <Route path='activities' element={<Activity />} />

@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ResetStyle />
     <GlobalStyles />
-    <BrowserRouter>
+    <BrowserRouter basename="/YoTW">
       <App />
     </BrowserRouter>
   </React.StrictMode>,

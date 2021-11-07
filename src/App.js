@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 import { NavigationBar } from './components';
 import Activity from './containers/Activity';
 import Hotels from './containers/Hotels';
 import Restaurant from './containers/Restaurant';
-
 import ScenicSpots from './containers/ScenicSpots';
 
 function App() {

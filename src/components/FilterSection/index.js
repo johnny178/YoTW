@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
+import { SelectFilter } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
 import { arrCountryName, countryDic, arrRegions, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
+import FilterBtn from '../FilterBtn';
 import {
   Container,
   FilterCont,
-  FilterForm,
+  FilterBtnCont,
   Searchbar,
   Select,
   Option,
@@ -83,14 +85,14 @@ const FilterSection = () => {
     setPageNumber(1);
   };
 
-  const regionFilter = e => {
+  const regionFilter = selectRegion => {
     setCountrySelect('全台');
-    setRegionSelect(e.target.value);
+    setRegionSelect(selectRegion);
     setPageNumber(1);
   };
 
-  const countryFilter = e => {
-    setCountrySelect(e.target.value);
+  const countryFilter = selectCountry => {
+    setCountrySelect(selectCountry);
     setPageNumber(1);
   };
 
@@ -117,16 +119,27 @@ const FilterSection = () => {
   return (
     <Container>
       <FilterCont>
-        <FilterForm >
-          <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
-          <Select value={regionSelect} onChange={e => regionFilter(e)}>
+        <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
+        {/* <Select value={regionSelect} onChange={e => regionFilter(e)}>
             {arrRegions.map((item, index) => <Option key={index} value={item}>{item}</Option>)}
-          </Select>
-          <Select value={countrySelect} onChange={e => countryFilter(e)}>
-            {regionTaiwan[regionSelect].map((item, index) => <Option key={index} value={item !== '縣市' ? item : '全台'}>{item}</Option>)}
-          </Select>
-        </FilterForm>
+          </Select> */}
+
+        <SelectFilter currentItem={regionSelect} data={arrRegions} setFilterData={(regionSelected) => regionFilter(regionSelected)} />
+        {/* <Select value={countrySelect} onChange={e => countryFilter(e)}>
+          {regionTaiwan[regionSelect].map((item, index) => <Option key={index} value={item !== '縣市' ? item : '全台'}>{item}</Option>)}
+        </Select> */}
       </FilterCont>
+      <FilterBtnCont>
+        {regionTaiwan[regionSelect].map((item, index) => {
+          return (
+            <FilterBtn
+              key={index}
+              data={item}
+              currentItem={countrySelect}
+              setFilterData={(countrySelected) => countryFilter(countrySelected)} />
+          );
+        })
+        }</FilterBtnCont>
       <GridCont>
         {renderScenicSpots()}
       </GridCont>

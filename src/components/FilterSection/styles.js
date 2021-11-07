@@ -11,9 +11,10 @@ export const FilterCont = styled.div`
   justify-content: center;
 `;
 
-export const FilterForm = styled.form`
-  display: flex;
-  flex-direction: row;
+export const FilterBtnCont = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  grid-gap: 10px;
 `;
 
 export const Searchbar = styled.input`

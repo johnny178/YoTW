@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { ResultItem } from '..';
 import { getAllHotels, getSpecificHotels } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
@@ -11,14 +12,9 @@ import {
   Select,
   Option,
   GridCont,
-  Description,
-  DetailCont,
-  Image,
-  Item,
-  Name
 } from './styles';
 
-const HotelFilter = () => {
+const HotelSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
@@ -79,17 +75,20 @@ const HotelFilter = () => {
 
   const renderHotels = () => (
     hotels.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69')) return;
-      let description = item?.Description?.length > 50 ? (item?.Description?.slice(0, 50) ?? '') + '...' : item?.Description;
+      if (item?.Picture?.PictureUrl1.includes('210.69') ||
+        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
+        item?.Name.includes('Test')
+      )
+        return;
 
       return (
-        <Item ref={hotels.length - 3 === index ? lastHotelsElementRef : null} key={item.ID}>
-          <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
-          <DetailCont>
-            <Name>{item?.Name?.replaceAll('.', '')}</Name>
-            <Description >{description}</Description>
-          </DetailCont>
-        </Item>
+        <ResultItem
+          ref={hotels.length - 3 === index ? lastHotelsElementRef : null}
+          key={index}
+          data={item}
+        />
       );
     })
   );
@@ -111,4 +110,4 @@ const HotelFilter = () => {
   );
 };
 
-export default HotelFilter;
+export default HotelSection;

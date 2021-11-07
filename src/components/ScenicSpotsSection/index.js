@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
-import { SelectFilter } from '..';
+import { ResultItem, SelectFilter } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
-import { arrCountryName, countryDic, arrRegions, regionTaiwan } from '../../constants/filterData';
+import { countryDic, arrRegions, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
 import FilterBtn from '../FilterBtn';
@@ -11,17 +10,10 @@ import {
   FilterCont,
   FilterBtnCont,
   Searchbar,
-  Select,
-  Option,
   GridCont,
-  Description,
-  DetailCont,
-  Image,
-  Item,
-  Name
 } from './styles';
 
-const FilterSection = () => {
+const ScenicSpotsSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
   const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
@@ -32,14 +24,13 @@ const FilterSection = () => {
 
     if ((regionSelect !== '全部地區' && countrySelect === '全台')) {
       name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}') and (` : ' and (';
-      regionTaiwan[regionSelect].slice(1, -1).map((region, index) => {
-        name += (index !== 0 ? ' or ' : '') + `contains(Address,'${region}')`;
+      regionTaiwan[regionSelect].slice(1).map((region, index) => {
+        name += (index !== 0 ? ' or ' : '') + `contains(City,'${region}')`;
       });
       name += ')';
     } else {
       name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
     }
-
     return name;
   };
 
@@ -65,7 +56,7 @@ const FilterSection = () => {
     data: scenicSpots,
     hasMore,
     loading,
-    error
+    // error
   } = useHttp(searchValue, `${countrySelect},${regionSelect}`, pageNumber, callAPI);
 
   const observer = useRef();
@@ -99,19 +90,19 @@ const FilterSection = () => {
 
   const renderScenicSpots = () => (
     scenicSpots.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69') || item?.Name.includes('Test')) return;
+      if (item?.Picture?.PictureUrl1.includes('210.69') ||
+        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
+        item?.Name.includes('Test')
+      )
+        return;
       return (
-        <Item
+        <ResultItem
           ref={scenicSpots.length - 3 === index ? lastScenicSpotsElementRef : null}
-          key={item.ID}
-          to={item.ID}
-        >
-          <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
-          <DetailCont>
-            <Name>{item?.Name?.replaceAll('.', '')}</Name>
-            <Description >{(item?.DescriptionDetail?.slice(0, 50) ?? '') + '...'}</Description>
-          </DetailCont>
-        </Item>
+          key={index}
+          data={item}
+        />
       );
     })
   );
@@ -120,14 +111,7 @@ const FilterSection = () => {
     <Container>
       <FilterCont>
         <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
-        {/* <Select value={regionSelect} onChange={e => regionFilter(e)}>
-            {arrRegions.map((item, index) => <Option key={index} value={item}>{item}</Option>)}
-          </Select> */}
-
         <SelectFilter currentItem={regionSelect} data={arrRegions} setFilterData={(regionSelected) => regionFilter(regionSelected)} />
-        {/* <Select value={countrySelect} onChange={e => countryFilter(e)}>
-          {regionTaiwan[regionSelect].map((item, index) => <Option key={index} value={item !== '縣市' ? item : '全台'}>{item}</Option>)}
-        </Select> */}
       </FilterCont>
       <FilterBtnCont>
         {regionTaiwan[regionSelect].map((item, index) => {
@@ -139,7 +123,8 @@ const FilterSection = () => {
               setFilterData={(countrySelected) => countryFilter(countrySelected)} />
           );
         })
-        }</FilterBtnCont>
+        }
+      </FilterBtnCont>
       <GridCont>
         {renderScenicSpots()}
       </GridCont>
@@ -147,4 +132,4 @@ const FilterSection = () => {
   );
 };
 
-export default FilterSection;
+export default ScenicSpotsSection;

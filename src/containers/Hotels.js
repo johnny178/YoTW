@@ -1,9 +1,9 @@
 import React from 'react';
-import { HotelFilter } from '../components';
+import { HotelSection } from '../components';
 
 const Hotels = () => {
   return (
-    <HotelFilter />
+    <HotelSection />
   );
 };
 

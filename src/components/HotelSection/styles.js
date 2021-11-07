@@ -37,33 +37,3 @@ export const GridCont = styled.div`
     grid-template-columns: repeat(1, minmax(15rem, 1fr));
   }
 `;
-
-export const Item = styled.div`
-  display: flex;
-  flex-direction: row;
-  background-color: gray;
-`;
-
-export const Image = styled.img`
-  align-self: center;
-  width: 40%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-export const DetailCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  padding: 20px;
-`;
-
-export const Name = styled.h1`
-  margin-bottom: 30px;
-  font-size: 16px;
-`;
-
-export const Description = styled.p`
-  font-size: 12px;
-`;
-

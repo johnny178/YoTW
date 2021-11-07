@@ -1,10 +1,10 @@
-import { FilterSection } from '../components';
+import { ScenicSpotsSection } from '../components';
 import React from 'react';
 
 const ScenicSpots = () => {
   return (
     <>
-      <FilterSection />
+      <ScenicSpotsSection />
     </>
   );
 };

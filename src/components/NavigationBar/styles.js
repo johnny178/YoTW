@@ -30,7 +30,7 @@ export const NavBtn = styled(NavLink)`
     margin-right: 20px;
   }
 
-  &.${({ activeClassName }) => activeClassName} {
+  &.${({ activeclassname }) => activeclassname} {
     border-bottom: 3px solid #FFFF6F;
     color: #FFFF6F;
   }

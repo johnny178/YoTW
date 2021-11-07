@@ -6,7 +6,9 @@ export const Button = styled.button`
   font-size: 14px;
   background-color: ${({ isActive }) => isActive ? 'red' : 'lightyellow'};
 
-  &:hover {
-    background-color: pink;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${({ isActive }) => isActive ? 'red' : 'pink'};
+    }
   }
 `;

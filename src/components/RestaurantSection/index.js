@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { ResultItem } from '..';
 import { getAllRestaurant, getSpecificRestaurant } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
@@ -11,11 +12,6 @@ import {
   Select,
   Option,
   GridCont,
-  Description,
-  DetailCont,
-  Image,
-  Item,
-  Name
 } from './styles';
 
 const RestaurantSection = () => {
@@ -79,18 +75,20 @@ const RestaurantSection = () => {
 
   const renderRestaurant = () => (
     restaurant.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69')) return;
-
-      let description = item?.Description?.length > 50 ? (item?.Description?.slice(0, 50) ?? '') + '...' : item?.Description;
+      if (item?.Picture?.PictureUrl1.includes('210.69') ||
+        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
+        item?.Name.includes('Test')
+      )
+        return;
 
       return (
-        <Item ref={restaurant.length - 3 === index ? lastRestaurantElementRef : null} key={item.ID}>
-          <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
-          <DetailCont>
-            <Name>{item?.Name?.replaceAll('.', '')}</Name>
-            <Description >{description}</Description>
-          </DetailCont>
-        </Item>
+        <ResultItem
+          ref={restaurant.length - 3 === index ? lastRestaurantElementRef : null}
+          key={index}
+          data={item}
+        />
       );
     })
   );

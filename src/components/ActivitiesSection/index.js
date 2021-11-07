@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { ResultItem } from '..';
 import { getAllActivities, getSpecificActivities } from '../../api';
 import { arrCountryName, countryDic } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
@@ -11,12 +12,6 @@ import {
   Select,
   Option,
   GridCont,
-  Description,
-  DetailCont,
-  Image,
-  Item,
-  Name,
-  Time
 } from './styles';
 
 const ActivitiesSection = () => {
@@ -78,27 +73,28 @@ const ActivitiesSection = () => {
     setPageNumber(1);
   };
 
-  function parseIsoDatetime(dtstr) {
-    var dt = dtstr.split(/[: T-]/).map(parseFloat);
-    return `${dt[0]}/${dt[1]}/${dt[2]}`;
-  }
+  // function parseIsoDatetime(dtstr) {
+  //   var dt = dtstr.split(/[: T-]/).map(parseFloat);
+  //   return `${dt[0]}/${dt[1]}/${dt[2]}`;
+  // }
 
   const renderActivities = () => (
     activities.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69')) return;
-
-      let description = item?.Description?.length > 50 ? (item?.Description?.slice(0, 50) ?? '') + '...' : item?.Description;
-      let duration = `${parseIsoDatetime(item.StartTime)} ~ ${parseIsoDatetime(item.EndTime)}`;
+      if (item?.Picture?.PictureUrl1.includes('210.69') ||
+        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
+        item?.Name.includes('Test')
+      )
+        return;
+      // let duration = `${parseIsoDatetime(item.StartTime)} ~ ${parseIsoDatetime(item.EndTime)}`;
 
       return (
-        <Item ref={activities.length - 3 === index ? lastActivitiesElementRef : null} key={item.ID}>
-          <Image src={item.Picture.PictureUrl1} alt={item.Picture.PictureDescription1} />
-          <DetailCont>
-            <Name>{item?.Name?.replaceAll('.', '')}</Name>
-            <Time>{duration}</Time>
-            <Description >{description}</Description>
-          </DetailCont>
-        </Item>
+        <ResultItem
+          ref={activities.length - 3 === index ? lastActivitiesElementRef : null}
+          key={index}
+          data={item}
+        />
       );
     })
   );

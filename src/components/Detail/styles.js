@@ -28,8 +28,9 @@ export const Line = styled.div`
 
 export const Img = styled.img`
   object-fit: cover;
-  max-width: 53%;
+  width: 40vw;
   margin-left: 73px;
+  border-radius: 8px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -81,5 +82,6 @@ export const RecommendHeader = styled.h1`
 export const ItemsBlock = styled.div`
   display: flex;
   overflow: scroll;
+  padding: 0 5px;
 `;
 

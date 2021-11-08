@@ -114,15 +114,16 @@ const ScenicSpotsSection = () => {
         <SelectFilter currentItem={regionSelect} data={arrRegions} setFilterData={(regionSelected) => regionFilter(regionSelected)} />
       </FilterCont>
       <FilterBtnCont>
-        {regionTaiwan[regionSelect].map((item, index) => {
-          return (
-            <FilterBtn
-              key={index}
-              data={item}
-              currentItem={countrySelect}
-              setFilterData={(countrySelected) => countryFilter(countrySelected)} />
-          );
-        })
+        {
+          regionTaiwan[regionSelect].map((item, index) => {
+            return (
+              <FilterBtn
+                key={index}
+                data={item}
+                currentItem={countrySelect}
+                setFilterData={(countrySelected) => countryFilter(countrySelected)} />
+            );
+          })
         }
       </FilterBtnCont>
       <GridCont>

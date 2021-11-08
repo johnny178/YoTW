@@ -1,7 +1,9 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
-  padding: 3% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const FilterCont = styled.div`
@@ -29,11 +31,20 @@ export const Option = styled.option`
 
 export const GridCont = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(15rem, 1fr));
+  grid-template-columns: repeat(4, minmax(5rem, 1fr));
   margin: 3% 0px;
-  grid-gap: 30px;
+  grid-gap: 27px;
+  padding: 0 3% 5%;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(1, minmax(15rem, 1fr));
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, minmax(5rem, 1fr));
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(5rem, 1fr));
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, minmax(5rem, 1fr));
   }
 `;

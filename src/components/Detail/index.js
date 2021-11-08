@@ -34,7 +34,6 @@ const Detail = () => {
   } = useLocation().state;
 
   let Infos = [
-    { text: Name },
     { text: Address },
     { text: Phone },
     { text: OpenTime },
@@ -65,7 +64,6 @@ const Detail = () => {
     loading,
     // error
   } = useHttp('', '', 1, callAPI);
-  console.log(hotels)
 
   return (
     <Container>

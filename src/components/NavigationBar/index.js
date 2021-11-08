@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header, Logo, NavBtn, NavBtnCont } from './styles';
 
 const NavigationBar = () => {
+  const [scrollNav, setScrollNav] = useState(false);
+  const changeNav = () => {
+    if (window.scrollY >= 100) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', changeNav);
+  }, []);
+
   return (
-    <Header>
+    <Header scrollNav={scrollNav}>
       <Logo to='/'>YoTW</Logo>
       <NavBtnCont>
         <NavBtn to='scenicSpots' /*target="_blank" */ activeclassname='active'>景點</NavBtn>

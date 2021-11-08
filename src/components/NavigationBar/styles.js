@@ -3,11 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   display: flex;
-  background-color: chocolate;
   padding: 0 12% 0 5%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  position: fixed;
+  background: ${({ scrollNav }) => (scrollNav ? '#B2E4FF' : 'transparent')};
+  transition: 800ms background-color ease;
 `;
 
 export const Logo = styled(NavLink)`

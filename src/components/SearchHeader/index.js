@@ -7,12 +7,12 @@ import { FilterBtnCont, HeaderBackgroundImg, HeaderCont, Searchbar, Title } from
 const SearchHeader = ({
   headerImage,
   searchValue = '',
-  handleSearch = () => { },
-  regionSelect,
-  regionFilter = () => { },
-  isFilterMenuOpen,
+  isFilterMenuOpen = false,
   setIsFilterMenuOpen = () => { },
-  countrySelect,
+  handleSearch = () => { },
+  regionSelect = false,
+  regionFilter = () => { },
+  countrySelect = false,
   countryFilter = () => { }
 }) => {
   return (

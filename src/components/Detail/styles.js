@@ -7,14 +7,19 @@ export const Container = styled.div`
 
 export const Frame = styled.div`
   display: flex;
-  padding: 4.6vh 6.7vw;
+  padding: 4.6vh 6.5vw;
+  margin-top: 50px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     flex-direction: column;
   }
 `;
 
-export const DetailCont = styled.div``;
+export const DetailCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
 
 export const TravelCont = styled.div`
   padding: 0 6.7vw;
@@ -23,38 +28,42 @@ export const TravelCont = styled.div`
 
 export const Line = styled.div`
   display: flex;
-  margin-bottom: 25px;
+
+  &:not(:last-child){
+    margin-bottom: 25px;
+  }
 `;
 
 export const Img = styled.img`
   object-fit: cover;
-  width: 40vw;
+  width: 55vw;
+  /* height: 90vh; */
   margin-left: 73px;
   border-radius: 8px;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    max-width: 100%;
+  @media (max-width: 992px) {
+    width: 100%;
     margin-left: 0px;
+    margin-top: 30px;
   }
 `;
 
 export const Title1 = styled.h1`
-  font-size: 30px;
+  font-size: 1.5rem;
   letter-spacing: 0.6px;
   color: #575757;
   margin-bottom: 30px;
 `;
 
 export const Title2 = styled.h2`
-  font-size: 24px;
+  font-size: 1rem;
   letter-spacing: 0.48px;
   color: #575757;
   margin-bottom: 10px;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 24px;
+  font-size: 1rem;
   letter-spacing: 0.48px;
   color: #70735D;
 `;
@@ -72,7 +81,7 @@ export const RecommendCont = styled.div`
 `;
 
 export const RecommendHeader = styled.h1`
-  font-size: 30px;
+  font-size: 1.5rem;
   letter-spacing: 0.6px;
   color: #283880;
   margin-bottom: 5vh;

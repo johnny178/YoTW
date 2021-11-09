@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 12px;
     font-weight: 600;
     line-height: 1.1;
+    background-color: #F8F8F8;
   }
 `;
 

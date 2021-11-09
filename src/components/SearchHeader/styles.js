@@ -6,13 +6,13 @@ export const HeaderCont = styled.div`
 
 export const HeaderBackgroundImg = styled.img`
   width: 100vw;
-  height: 80vh;
+  height: 70vh;
   object-fit: cover;
 `;
 
 export const Title = styled.h1`
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 3rem;
@@ -23,6 +23,10 @@ export const Title = styled.h1`
   &::after {
     content: ' GO';
     color: #FFD965;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 2.5rem;
   }
 `;
 
@@ -35,15 +39,14 @@ export const Searchbar = styled.input`
   box-shadow: inset -2px 1px 0px #00000015, -3px 3px 7px #0A4F8B;
   border-radius: 8px;
   letter-spacing: 0.4px;
-  color: rgba(87, 87, 87, 0.4);
   text-align: center;
   padding: 7px 0;
-
   width: 30vw;
   font-size: 1rem;
 
   &::placeholder {
     color: rgba(87, 87, 87, 0.4);
+    font-weight: 900;
   }
 
   @media (max-width: 992px) {

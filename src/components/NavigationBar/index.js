@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Logo, NavBtn, NavBtnCont } from './styles';
+import { useLocation } from 'react-router';
 
 const NavigationBar = () => {
-  const [scrollNav, setScrollNav] = useState(false);
+  const location = useLocation();
+  const [scrollNav, setScrollNav] = useState(location.pathname.includes(location.state.ID));
   const changeNav = () => {
     if (window.scrollY >= 100) {
       setScrollNav(true);
@@ -12,7 +14,9 @@ const NavigationBar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', changeNav);
+    if (!location.pathname.includes(location.state.ID)) {
+      window.addEventListener('scroll', changeNav);
+    }
   }, []);
 
   return (

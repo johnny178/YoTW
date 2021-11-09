@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem, SelectFilter } from '..';
+import { ResultItem, SearchHeader, SelectFilter } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
 import { countryDic, arrRegions, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
@@ -115,38 +115,17 @@ const ScenicSpotsSection = () => {
 
   return (
     <Container>
-      <HeaderCont>
-        <HeaderBackgroundImg src={HeaderImage} alt={'headerImage'} />
-        <Title>Where you</Title>
-        <Searchbar
-          type="text"
-          value={searchValue}
-          placeholder={'搜尋'}
-          onChange={e => handleSearch(e)}
-        />
-        <SelectFilter
-          currentItem={regionSelect}
-          data={arrRegions}
-          setFilterData={(regionSelected) => regionFilter(regionSelected)}
-          isOpen={isFilterMenuOpen}
-          setIsOpen={prevIsFilterOpen => setIsFilterMenuOpen(prevIsFilterOpen)}
-        />
-        <FilterBtnCont>
-          {
-            regionTaiwan[regionSelect].map((item, index) => {
-              return (
-                <FilterBtn
-                  key={index}
-                  data={item}
-                  currentItem={countrySelect}
-                  setFilterData={(countrySelected) => countryFilter(countrySelected)}
-                  isFilterMenuOpen={isFilterMenuOpen}
-                />
-              );
-            })
-          }
-        </FilterBtnCont>
-      </HeaderCont>
+      <SearchHeader
+        headerImage={HeaderImage}
+        searchValue={searchValue}
+        isFilterMenuOpen={isFilterMenuOpen}
+        setIsFilterMenuOpen={prevIsFilterOpen => setIsFilterMenuOpen(prevIsFilterOpen)}
+        handleSearch={e => handleSearch(e)}
+        regionSelect={regionSelect}
+        regionFilter={regionSelected => regionFilter(regionSelected)}
+        countrySelect={countrySelect}
+        countryFilter={countrySelected => countryFilter(countrySelected)}
+      />
       <GridCont>
         {renderScenicSpots()}
       </GridCont>

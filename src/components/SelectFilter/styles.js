@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 //Select
 export const Container = styled.div`
   position: absolute;
-  top: 55%;
+  top: 57%;
   left: 50%;
   transform: translate(-50%, 0);
   display: flex;
@@ -31,15 +31,18 @@ export const SelectBtn = styled.button`
   padding: 7px 0;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: 900;
 
   &::before{
     content: '\\25BC';
     margin-right: 2rem;
+    font-weight: 900;
   }
 
   &::after{
     content: '\\25BC';
     margin-left: 2rem;
+    font-weight: 900;
   }
 `;
 

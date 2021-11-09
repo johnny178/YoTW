@@ -14,14 +14,13 @@ export const Item = styled(Link)`
 
 export const Image = styled.img`
   width: 19vw;
-  /* height: 54%; */
   height: 100%;
   max-height: 260px;
   object-fit: cover;
   margin-bottom: 15px;
   border-radius:  6px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     width: 25vw;
   }
   
@@ -37,7 +36,7 @@ export const Image = styled.img`
 export const DetailCont = styled.div`
   width: 19vw;
   
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     width: 25vw;
   }
   
@@ -55,6 +54,17 @@ export const Name = styled.h1`
   font-size: 1rem;
   letter-spacing: 0.48px;
   color: #575757;
+`;
+
+export const Line = styled.div`
+  display: flex;
+
+`;
+
+export const Icon = styled.img`
+  height: 0.75rem;
+  object-fit: contain;
+  margin-right: 5px;
 `;
 
 export const Content1 = styled.p`

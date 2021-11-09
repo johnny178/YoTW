@@ -36,7 +36,7 @@ export const GridCont = styled.div`
   grid-gap: 27px;
   padding: 0 3% 5%;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(3, minmax(5rem, 1fr));
   }
   

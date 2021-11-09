@@ -7,3 +7,4 @@ export { default as Layout } from './Layout';
 export { default as SelectFilter } from './SelectFilter';
 export { default as ResultItem } from './ResultItem';
 export { default as Detail } from './Detail';
+export { default as SearchHeader } from './SearchHeader';

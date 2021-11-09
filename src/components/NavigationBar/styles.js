@@ -11,6 +11,7 @@ export const Header = styled.header`
   position: fixed;
   background: ${({ scrollNav }) => (scrollNav ? '#B2E4FF' : 'transparent')};
   transition: 800ms background-color ease;
+  z-index: 99;
 `;
 
 export const Logo = styled(NavLink)`

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu, DropdownItem, SelectBtn, Container } from './styles';
 
-const SelectFilter = ({ currentItem, data, setFilterData }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const SelectFilter = ({ currentItem, data, setFilterData, isOpen, setIsOpen }) => {
   const handleClick = selectedItem => {
     setIsOpen(prevIsOpen => !prevIsOpen);
     setFilterData(selectedItem);
@@ -20,10 +18,13 @@ const SelectFilter = ({ currentItem, data, setFilterData }) => {
                 key={index}
                 onClick={e => handleClick(e.target.innerText)}
                 isActive={currentItem === item}
-              >{item}</DropdownItem>
+              >
+                {item}
+              </DropdownItem>
             )
           }
-        </Menu>}
+        </Menu>
+      }
     </Container>
   );
 };

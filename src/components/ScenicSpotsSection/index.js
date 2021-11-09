@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
 import { ResultItem, SelectFilter } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
@@ -7,17 +8,22 @@ import useHttp from '../../hooks/useHttp';
 import FilterBtn from '../FilterBtn';
 import {
   Container,
-  FilterCont,
   FilterBtnCont,
   Searchbar,
   GridCont,
+  HeaderBackgroundImg,
+  HeaderCont,
+  Title,
 } from './styles';
+import HeaderImage from '../../images/taipei-banner.png';
 
 const ScenicSpotsSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
   const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
+
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const setFilterName = () => {
     let name = '';
@@ -109,23 +115,38 @@ const ScenicSpotsSection = () => {
 
   return (
     <Container>
-      <FilterCont>
-        <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
-        <SelectFilter currentItem={regionSelect} data={arrRegions} setFilterData={(regionSelected) => regionFilter(regionSelected)} />
-      </FilterCont>
-      <FilterBtnCont>
-        {
-          regionTaiwan[regionSelect].map((item, index) => {
-            return (
-              <FilterBtn
-                key={index}
-                data={item}
-                currentItem={countrySelect}
-                setFilterData={(countrySelected) => countryFilter(countrySelected)} />
-            );
-          })
-        }
-      </FilterBtnCont>
+      <HeaderCont>
+        <HeaderBackgroundImg src={HeaderImage} alt={'headerImage'} />
+        <Title>Where you</Title>
+        <Searchbar
+          type="text"
+          value={searchValue}
+          placeholder={'搜尋'}
+          onChange={e => handleSearch(e)}
+        />
+        <SelectFilter
+          currentItem={regionSelect}
+          data={arrRegions}
+          setFilterData={(regionSelected) => regionFilter(regionSelected)}
+          isOpen={isFilterMenuOpen}
+          setIsOpen={prevIsFilterOpen => setIsFilterMenuOpen(prevIsFilterOpen)}
+        />
+        <FilterBtnCont>
+          {
+            regionTaiwan[regionSelect].map((item, index) => {
+              return (
+                <FilterBtn
+                  key={index}
+                  data={item}
+                  currentItem={countrySelect}
+                  setFilterData={(countrySelected) => countryFilter(countrySelected)}
+                  isFilterMenuOpen={isFilterMenuOpen}
+                />
+              );
+            })
+          }
+        </FilterBtnCont>
+      </HeaderCont>
       <GridCont>
         {renderScenicSpots()}
       </GridCont>

@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: '華康黑體 Std','Roboto','Helvetica Neue', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.1;
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { ResultItem } from '..';
@@ -33,16 +32,15 @@ const Detail = () => {
     Position
   } = useLocation().state;
 
+  let openTime = OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
+    '全天候開放' : (OpenTime ?? '查無時間資訊');
   let Infos = [
     { text: Address },
     { text: Phone },
-    { text: OpenTime },
+    { text: openTime },
     { text: TicketInfo },
     { text: DescriptionDetail },
   ];
-
-  let test = [1, 2, 3, 4, 5, 6, 7,];
-  // console.log(useLocation().state);
 
   const callAPI = async (pageNumber) => {
     let resp = [];
@@ -60,8 +58,8 @@ const Detail = () => {
 
   const {
     data: hotels,
-    hasMore,
-    loading,
+    // hasMore,
+    // loading,
     // error
   } = useHttp('', '', 1, callAPI);
 

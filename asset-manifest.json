@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/YoTW/static/js/main.1f716ffb.chunk.js",
-    "main.js.map": "/YoTW/static/js/main.1f716ffb.chunk.js.map",
+    "main.js": "/YoTW/static/js/main.b18c2f23.chunk.js",
+    "main.js.map": "/YoTW/static/js/main.b18c2f23.chunk.js.map",
     "runtime-main.js": "/YoTW/static/js/runtime-main.f0225c94.js",
     "runtime-main.js.map": "/YoTW/static/js/runtime-main.f0225c94.js.map",
-    "static/js/2.ef8790de.chunk.js": "/YoTW/static/js/2.ef8790de.chunk.js",
-    "static/js/2.ef8790de.chunk.js.map": "/YoTW/static/js/2.ef8790de.chunk.js.map",
+    "static/js/2.3b3ded87.chunk.js": "/YoTW/static/js/2.3b3ded87.chunk.js",
+    "static/js/2.3b3ded87.chunk.js.map": "/YoTW/static/js/2.3b3ded87.chunk.js.map",
     "index.html": "/YoTW/index.html",
-    "static/js/2.ef8790de.chunk.js.LICENSE.txt": "/YoTW/static/js/2.ef8790de.chunk.js.LICENSE.txt",
+    "static/js/2.3b3ded87.chunk.js.LICENSE.txt": "/YoTW/static/js/2.3b3ded87.chunk.js.LICENSE.txt",
     "static/media/taipei-banner.239b84d2.png": "/YoTW/static/media/taipei-banner.239b84d2.png"
   },
   "entrypoints": [
     "static/js/runtime-main.f0225c94.js",
-    "static/js/2.ef8790de.chunk.js",
-    "static/js/main.1f716ffb.chunk.js"
+    "static/js/2.3b3ded87.chunk.js",
+    "static/js/main.b18c2f23.chunk.js"
   ]
 }

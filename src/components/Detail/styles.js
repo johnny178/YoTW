@@ -37,7 +37,6 @@ export const Line = styled.div`
 export const Img = styled.img`
   object-fit: cover;
   width: 55vw;
-  /* height: 90vh; */
   margin-left: 73px;
   border-radius: 8px;
 
@@ -49,7 +48,7 @@ export const Img = styled.img`
 `;
 
 export const Title1 = styled.h1`
-  font-size: 1.5rem;
+  font-size: 2rem;
   letter-spacing: 0.6px;
   color: #575757;
   margin-bottom: 30px;
@@ -91,6 +90,6 @@ export const RecommendHeader = styled.h1`
 export const ItemsBlock = styled.div`
   display: flex;
   overflow: scroll;
-  padding: 0 5px;
+  padding: 5px;
 `;
 

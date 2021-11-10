@@ -19,7 +19,10 @@ export const Logo = styled(NavLink)`
   font-size: 20px;
 `;
 
-export const Image = styled.img``;
+export const Icon = styled.img`
+  width: 95px;
+  height: 28px;
+`;
 
 export const NavBtnCont = styled.div`
   display: flex;

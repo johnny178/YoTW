@@ -1,28 +1,30 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem } from '..';
+import { ResultItem, SearchHeader } from '..';
 import { getAllHotels, getSpecificHotels } from '../../api';
-import { arrCountryName, countryDic } from '../../constants/filterData';
+import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
-import {
-  Container,
-  FilterCont,
-  FilterForm,
-  Searchbar,
-  Select,
-  Option,
-  GridCont,
-} from './styles';
+import HeaderImage from '../../images/taipei-banner.png';
+import { Container, GridCont, } from './styles';
 
 const HotelSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
+  const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
 
   const setFilterName = () => {
     let name = '';
 
-    name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
+    if ((regionSelect !== '全部地區' && countrySelect === '全台')) {
+      name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}') and (` : ' and (';
+      regionTaiwan[regionSelect].slice(1).map((region, index) => {
+        name += (index !== 0 ? ' or ' : '') + `contains(City,'${region}')`;
+      });
+      name += ')';
+    } else {
+      name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
+    }
     return name;
   };
 
@@ -49,7 +51,7 @@ const HotelSection = () => {
     hasMore,
     loading,
     // error
-  } = useHttp(searchValue, countrySelect, pageNumber, callAPI);
+  } = useHttp(searchValue, `${countrySelect},${regionSelect}`, pageNumber, callAPI);
 
   const observer = useRef();
   const lastHotelsElementRef = useCallback(node => {
@@ -68,8 +70,14 @@ const HotelSection = () => {
     setPageNumber(1);
   };
 
-  const handleFilter = e => {
-    setCountrySelect(e.target.value);
+  const regionFilter = selectRegion => {
+    setCountrySelect('全台');
+    setRegionSelect(selectRegion);
+    setPageNumber(1);
+  };
+
+  const countryFilter = selectCountry => {
+    setCountrySelect(selectCountry);
     setPageNumber(1);
   };
 
@@ -95,14 +103,15 @@ const HotelSection = () => {
 
   return (
     <Container>
-      <FilterCont>
-        <FilterForm >
-          <Searchbar type="text" value={searchValue} onChange={e => handleSearch(e)} />
-          <Select value={countrySelect} onChange={e => handleFilter(e)}>
-            {arrCountryName.map((item, index) => <Option key={index} value={item}>{item}</Option>)}
-          </Select>
-        </FilterForm>
-      </FilterCont>
+      <SearchHeader
+        headerImage={HeaderImage}
+        searchValue={searchValue}
+        handleSearch={e => handleSearch(e)}
+        regionSelect={regionSelect}
+        regionFilter={regionSelected => regionFilter(regionSelected)}
+        countrySelect={countrySelect}
+        countryFilter={countrySelected => countryFilter(countrySelected)}
+      />
       <GridCont>
         {renderHotels()}
       </GridCont>

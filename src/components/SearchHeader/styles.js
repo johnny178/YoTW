@@ -21,12 +21,12 @@ export const Title = styled.h1`
   text-shadow: -3px 4px 4px #0D3457;
 
   &::after {
-    content: ' GO';
+    content: ' ${({ value }) => value}';
     color: #FFD965;
   }
 
   @media (max-width: 600px) {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 `;
 

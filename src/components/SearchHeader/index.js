@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router';
 import { SelectFilter } from '..';
 import { arrRegions, regionTaiwan } from '../../constants/filterData';
 import FilterBtn from '../FilterBtn';
@@ -7,20 +8,36 @@ import { FilterBtnCont, HeaderBackgroundImg, HeaderCont, Searchbar, Title } from
 const SearchHeader = ({
   headerImage,
   searchValue = '',
-  isFilterMenuOpen = false,
-  setIsFilterMenuOpen = () => { },
   handleSearch = () => { },
   regionSelect = false,
   regionFilter = () => { },
   countrySelect = false,
   countryFilter = () => { }
 }) => {
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const getTitle = () => {
+    switch (location.pathname.slice(1)) {
+      case 'scenicSpots':
+        return 'GO';
+      case 'hotels':
+        return 'LIVE';
+      case 'activities':
+        return 'PLAY';
+      case 'restaurant':
+        return 'EAT';
+      default:
+        return 'YOTW';
+    }
+  };
+
   return (
     <HeaderCont>
       <HeaderBackgroundImg src={headerImage} alt={'headerImage'} />
-      <Title>Where you</Title>
+      <Title value={getTitle()}>Where you</Title>
       <Searchbar
-        type="text"
+        type='text'
         value={searchValue}
         placeholder={'搜尋'}
         onChange={e => handleSearch(e)}

@@ -20,6 +20,7 @@ import {
 } from './styles';
 
 const Detail = () => {
+  const location = useLocation();
   const {
     Name,
     Address,
@@ -30,7 +31,7 @@ const Detail = () => {
     Picture,
     TravelInfo,
     Position
-  } = useLocation().state;
+  } = location.state;
 
   let openTime = OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (OpenTime ?? '查無時間資訊');
@@ -98,7 +99,6 @@ const Detail = () => {
           }
         </ItemsBlock>
       </RecommendCont>
-
     </Container>
   );
 };

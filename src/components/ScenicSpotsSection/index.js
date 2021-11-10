@@ -1,20 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem, SearchHeader, SelectFilter } from '..';
+import { ResultItem, SearchHeader } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
-import { countryDic, arrRegions, regionTaiwan } from '../../constants/filterData';
+import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
-import FilterBtn from '../FilterBtn';
-import {
-  Container,
-  FilterBtnCont,
-  Searchbar,
-  GridCont,
-  HeaderBackgroundImg,
-  HeaderCont,
-  Title,
-} from './styles';
+import { Container, GridCont } from './styles';
 import HeaderImage from '../../images/taipei-banner.png';
 
 const ScenicSpotsSection = () => {
@@ -22,8 +12,6 @@ const ScenicSpotsSection = () => {
   const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
-
-  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const setFilterName = () => {
     let name = '';
@@ -118,8 +106,6 @@ const ScenicSpotsSection = () => {
       <SearchHeader
         headerImage={HeaderImage}
         searchValue={searchValue}
-        isFilterMenuOpen={isFilterMenuOpen}
-        setIsFilterMenuOpen={prevIsFilterOpen => setIsFilterMenuOpen(prevIsFilterOpen)}
         handleSearch={e => handleSearch(e)}
         regionSelect={regionSelect}
         regionFilter={regionSelected => regionFilter(regionSelected)}

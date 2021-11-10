@@ -87,7 +87,12 @@ export const GridCont = styled.div`
   grid-template-columns: repeat(4, minmax(5rem, 1fr));
   margin: 3% 0px;
   grid-gap: 27px;
-  padding: 0 3% 5%;
+  padding-bottom: 5%;
+  max-width: 1440px;
+
+  @media (max-width: 1512px) {
+    padding: 0 3% 5%;
+  }
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, minmax(5rem, 1fr));

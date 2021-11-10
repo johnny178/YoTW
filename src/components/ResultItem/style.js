@@ -10,72 +10,61 @@ export const Item = styled(Link)`
   border: 1px solid #70735DA3;
   margin: ${({ margin }) => margin ? margin : ''};
   background-color: white;
+  /* flex: 1; */
 `;
 
 export const Image = styled.img`
-  width: 19vw;
+  width: 100%;
   height: 100%;
   max-height: 260px;
   object-fit: cover;
   margin-bottom: 15px;
   border-radius:  6px;
-
-  @media (max-width: 1200px) {
-    width: 25vw;
-  }
-  
-  @media (max-width: 768px) {
-    width: 40vw;
-  }
-
-  @media (max-width: 600px) {
-    width: 80vw;
-  }
+  /* max-width: 100%; */
 `;
 
 export const DetailCont = styled.div`
-  width: 19vw;
+  width: ${({ isDetailPage }) => isDetailPage ? '19vw' : ''};
   
   @media (max-width: 1200px) {
-    width: 25vw;
+    width: ${({ isDetailPage }) => isDetailPage ? '25vw' : ''};
   }
   
   @media (max-width: 768px) {
-    width: 40vw;
+    width: ${({ isDetailPage }) => isDetailPage ? '40vw' : ''};
   }
 
   @media (max-width: 600px) {
-    width: 80vw;
+    width: ${({ isDetailPage }) => isDetailPage ? '50vw' : ''};
   }
 `;
 
 export const Name = styled.h1`
   margin-bottom: 17px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   letter-spacing: 0.48px;
   color: #575757;
 `;
 
 export const Line = styled.div`
   display: flex;
-
 `;
 
 export const Icon = styled.img`
-  height: 0.75rem;
+  height: 1rem;
   object-fit: contain;
   margin-right: 5px;
 `;
 
 export const Content1 = styled.p`
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.36px;
   color: #70735D;
   margin-bottom: 12px;
 `;
 
 export const Content2 = styled.p`
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 0.36px;
   color: #575757;
 `;

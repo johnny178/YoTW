@@ -8,3 +8,5 @@ export { default as SelectFilter } from './SelectFilter';
 export { default as ResultItem } from './ResultItem';
 export { default as Detail } from './Detail';
 export { default as SearchHeader } from './SearchHeader';
+export { default as Header } from './Home/Header';
+export { default as Region } from './Home/Region';

@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { ResultItem } from '..';
+import { Loader, ResultItem } from '..';
 import { getAllHotels } from '../../api';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
@@ -16,7 +17,7 @@ import {
   RecommendCont,
   RecommendHeader,
   TravelCont,
-  ItemsBlock
+  ItemsBlock,
 } from './styles';
 
 const Detail = () => {
@@ -59,10 +60,16 @@ const Detail = () => {
 
   const {
     data: hotels,
-    // hasMore,
-    // loading,
+    loading,
     // error
   } = useHttp('', '', 1, callAPI);
+
+  if (loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>);
+  }
 
   return (
     <Container>

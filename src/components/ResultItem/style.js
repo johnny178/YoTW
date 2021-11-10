@@ -10,34 +10,33 @@ export const Item = styled(Link)`
   border: 1px solid #70735DA3;
   margin: ${({ margin }) => margin ? margin : ''};
   background-color: white;
-  /* flex: 1; */
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  max-height: 260px;
   object-fit: cover;
   margin-bottom: 15px;
-  border-radius:  6px;
-  /* max-width: 100%; */
-`;
-
-export const DetailCont = styled.div`
-  width: ${({ isDetailPage }) => isDetailPage ? '19vw' : ''};
+  height: min(200px, 50vw);
+  
+  width: ${({ isDetailPage }) => isDetailPage ? '17vw' : ''};
+  height: ${({ isDetailPage }) => isDetailPage ? '12.24vw' : ''};
   
   @media (max-width: 1200px) {
     width: ${({ isDetailPage }) => isDetailPage ? '25vw' : ''};
+    height: ${({ isDetailPage }) => isDetailPage ? '18.75vw' : ''};
   }
   
   @media (max-width: 768px) {
     width: ${({ isDetailPage }) => isDetailPage ? '40vw' : ''};
+    height: ${({ isDetailPage }) => isDetailPage ? '30vw' : ''};
   }
 
   @media (max-width: 600px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '50vw' : ''};
+    width: ${({ isDetailPage }) => isDetailPage ? '65vw' : ''};
+    height: ${({ isDetailPage }) => isDetailPage ? '48.75vw' : ''};
   }
 `;
+
+export const DetailCont = styled.div``;
 
 export const Name = styled.h1`
   margin-bottom: 17px;

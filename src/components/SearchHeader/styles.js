@@ -19,6 +19,7 @@ export const Title = styled.h1`
   letter-spacing: 0.6px;
   color: #FFFFFF;
   text-shadow: -3px 4px 4px #0D3457;
+  white-space: nowrap;
 
   &::after {
     content: ' ${({ value }) => value}';

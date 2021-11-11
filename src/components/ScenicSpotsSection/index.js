@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Loader, ResultItem, SearchHeader } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
@@ -12,6 +12,10 @@ const ScenicSpotsSection = () => {
   const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const setFilterName = () => {
     let name = '';

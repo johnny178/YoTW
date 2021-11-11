@@ -56,6 +56,7 @@ export const Icon = styled.img`
   top: ${({ top }) => top};
   left: ${({ left }) => left};
   width: 30px;
+  object-fit: contain;
 
   @media (max-width: 600px) {
     top: 0px;
@@ -91,7 +92,7 @@ export const Content = styled.p`
 
 export const NorthernImage = styled.img`
   width: min(500px, 45vw);
-  height: min(475px, 42.75vw);
+  object-fit: contain;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -101,7 +102,7 @@ export const NorthernImage = styled.img`
 
 export const CentralImage = styled.img`
   width: min(565px, 45vw);
-  height: min(508.5px, 40.5vw);
+  object-fit: contain;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -112,7 +113,7 @@ export const CentralImage = styled.img`
 export const SouthernImage = styled.img`
   align-self: flex-end;
   width: min(500px, 45vw);
-  height: min(420px, 37.8vw);
+  object-fit: contain;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -122,7 +123,7 @@ export const SouthernImage = styled.img`
 
 export const EeasternImage = styled.img`
   width: min(565px, 45vw);
-  height: min(406.8px, 32.4vw);
+  object-fit: contain;
 
   @media (max-width: 600px) {
     width: 100%;

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Loader, ResultItem } from '..';
 import { getAllHotels } from '../../api';
@@ -43,6 +43,10 @@ const Detail = () => {
     { text: TicketInfo },
     { text: DescriptionDetail },
   ];
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const callAPI = async (pageNumber) => {
     let resp = [];

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Loader, ResultItem, SearchHeader } from '..';
 import { getAllRestaurant, getSpecificRestaurant } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
@@ -16,6 +16,10 @@ const RestaurantSection = () => {
   const [regionSelect, setRegionSelect] = useState('全部地區');
   const [searchValue, setSearchValue] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const setFilterName = () => {
     let name = '';

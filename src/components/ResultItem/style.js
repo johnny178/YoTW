@@ -18,21 +18,17 @@ export const Image = styled.img`
   height: min(200px, 50vw);
   
   width: ${({ isDetailPage }) => isDetailPage ? '17vw' : ''};
-  height: ${({ isDetailPage }) => isDetailPage ? '12.24vw' : ''};
   
   @media (max-width: 1200px) {
     width: ${({ isDetailPage }) => isDetailPage ? '25vw' : ''};
-    height: ${({ isDetailPage }) => isDetailPage ? '18.75vw' : ''};
   }
   
   @media (max-width: 768px) {
     width: ${({ isDetailPage }) => isDetailPage ? '40vw' : ''};
-    height: ${({ isDetailPage }) => isDetailPage ? '30vw' : ''};
   }
 
   @media (max-width: 600px) {
     width: ${({ isDetailPage }) => isDetailPage ? '65vw' : ''};
-    height: ${({ isDetailPage }) => isDetailPage ? '48.75vw' : ''};
   }
 `;
 

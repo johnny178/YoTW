@@ -32,5 +32,6 @@ export const Title = styled.h1`
 
   @media (max-width: 600px) {
     font-size: 2rem;
+    line-height: 1.5;
   }
 `;

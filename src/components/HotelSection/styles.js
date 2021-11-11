@@ -6,6 +6,10 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const Frame = styled.div`
+  height: ${({ isLoading }) => isLoading ? '150vh' : 'auto'};
+`;
+
 export const GridCont = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(5rem, 1fr));

@@ -11,3 +11,4 @@ export { default as SearchHeader } from './SearchHeader';
 export { default as Header } from './Home/Header';
 export { default as Region } from './Home/Region';
 export { default as Loader } from './Loader';
+export { default as Footer } from './Footer';

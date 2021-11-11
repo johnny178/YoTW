@@ -1,11 +1,11 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem, SearchHeader } from '..';
+import { Loader, ResultItem, SearchHeader } from '..';
 import { getAllHotels, getSpecificHotels } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
 import HeaderImage from '../../images/taipei-banner.png';
-import { Container, GridCont, } from './styles';
+import { Container, Frame, GridCont, } from './styles';
 
 const HotelSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
@@ -112,9 +112,12 @@ const HotelSection = () => {
         countrySelect={countrySelect}
         countryFilter={countrySelected => countryFilter(countrySelected)}
       />
-      <GridCont>
-        {renderHotels()}
-      </GridCont>
+      <Frame isLoading={loading}>
+        {loading && <Loader />}
+        <GridCont>
+          {renderHotels()}
+        </GridCont>
+      </Frame>
     </Container>
   );
 };

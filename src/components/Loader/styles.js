@@ -7,8 +7,7 @@ export const Container = styled.div`
   width: 80px;
   height: 80px;
   animation: spin 2s linear infinite;
-  align-self: center;
-  margin-top: 5%;
+  margin: 10% auto 0;
   
   @keyframes spin {
     0% { transform: rotate(0deg); }

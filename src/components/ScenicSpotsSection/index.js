@@ -1,10 +1,10 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem, SearchHeader } from '..';
+import { Loader, ResultItem, SearchHeader } from '..';
 import { getAllScenicSpots, getSpecificScenicSpots } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
-import { Container, GridCont } from './styles';
+import { Container, GridCont, Frame } from './styles';
 import HeaderImage from '../../images/taipei-banner.png';
 
 const ScenicSpotsSection = () => {
@@ -112,9 +112,12 @@ const ScenicSpotsSection = () => {
         countrySelect={countrySelect}
         countryFilter={countrySelected => countryFilter(countrySelected)}
       />
-      <GridCont>
-        {renderScenicSpots()}
-      </GridCont>
+      <Frame isLoading={loading}>
+        {loading && <Loader />}
+        <GridCont>
+          {renderScenicSpots()}
+        </GridCont>
+      </Frame>
     </Container>
   );
 };

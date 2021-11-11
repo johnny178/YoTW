@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { ResultItem, SearchHeader } from '..';
+import { Loader, ResultItem, SearchHeader } from '..';
 import { getAllRestaurant, getSpecificRestaurant } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
 import HeaderImage from '../../images/taipei-banner.png';
@@ -7,6 +7,7 @@ import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
 import {
   Container,
+  Frame,
   GridCont,
 } from './styles';
 
@@ -115,9 +116,12 @@ const RestaurantSection = () => {
         countrySelect={countrySelect}
         countryFilter={countrySelected => countryFilter(countrySelected)}
       />
-      <GridCont>
-        {renderRestaurant()}
-      </GridCont>
+      <Frame isLoading={loading}>
+        {loading && <Loader />}
+        <GridCont>
+          {renderRestaurant()}
+        </GridCont>
+      </Frame>
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { NavigationBar } from './components';
+import { Footer, NavigationBar } from './components';
 import Activity from './containers/Activity';
 import DetailPage from './containers/DetailPage';
 import Home from './containers/Home';
@@ -28,6 +28,7 @@ function App() {
         <Route path='restaurant' element={<Restaurant />} />
         <Route path='restaurant/:scenicSpotId' element={<DetailPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }

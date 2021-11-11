@@ -30,13 +30,12 @@ const ResultItem = React.forwardRef((props, ref) => {
       to={data.ID}
       state={data}
       margin={margin ?? ''}
-      isDetailPage={location.pathname.includes(location?.state?.ID)}
     >
       <Image
         src={data.Picture.PictureUrl1} alt={data.Picture.PictureDescription1}
         isDetailPage={location.pathname.includes(location?.state?.ID)}
       />
-      <DetailCont isDetailPage={location.pathname.includes(location?.state?.ID)}>
+      <DetailCont>
         <Name>{data?.Name?.replaceAll('.', '')}</Name>
         <Line>
           <Icon src={Address} />

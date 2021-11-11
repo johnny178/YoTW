@@ -66,7 +66,7 @@ const Detail = () => {
 
   if (loading) {
     return (
-      <Container>
+      <Container isLoading={loading}>
         <Loader />
       </Container>);
   }

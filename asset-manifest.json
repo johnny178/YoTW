@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/YoTW/static/js/main.7f361d3a.chunk.js",
-    "main.js.map": "/YoTW/static/js/main.7f361d3a.chunk.js.map",
+    "main.js": "/YoTW/static/js/main.8a762b07.chunk.js",
+    "main.js.map": "/YoTW/static/js/main.8a762b07.chunk.js.map",
     "runtime-main.js": "/YoTW/static/js/runtime-main.f0225c94.js",
     "runtime-main.js.map": "/YoTW/static/js/runtime-main.f0225c94.js.map",
     "static/js/2.ef8790de.chunk.js": "/YoTW/static/js/2.ef8790de.chunk.js",
     "static/js/2.ef8790de.chunk.js.map": "/YoTW/static/js/2.ef8790de.chunk.js.map",
     "index.html": "/YoTW/index.html",
     "static/js/2.ef8790de.chunk.js.LICENSE.txt": "/YoTW/static/js/2.ef8790de.chunk.js.LICENSE.txt",
-    "static/media/Home-central.f22e95e2.png": "/YoTW/static/media/Home-central.f22e95e2.png",
+    "static/media/Home-central.a2eda600.png": "/YoTW/static/media/Home-central.a2eda600.png",
     "static/media/Home-eastern.9b495b10.png": "/YoTW/static/media/Home-eastern.9b495b10.png",
     "static/media/Home-northern.0d3a834e.png": "/YoTW/static/media/Home-northern.0d3a834e.png",
     "static/media/Home-southern.d0a011d2.png": "/YoTW/static/media/Home-southern.d0a011d2.png",
@@ -17,6 +17,6 @@
   "entrypoints": [
     "static/js/runtime-main.f0225c94.js",
     "static/js/2.ef8790de.chunk.js",
-    "static/js/main.7f361d3a.chunk.js"
+    "static/js/main.8a762b07.chunk.js"
   ]
 }

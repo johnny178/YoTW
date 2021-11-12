@@ -20,3 +20,9 @@ export const Text = styled.p`
     font-size: 0.75rem;
   }
 `;
+
+export const Url = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 5px;
+`;

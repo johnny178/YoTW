@@ -40,6 +40,10 @@ export const Container = styled.div`
       'img4'
       'text4';
   }
+
+  @media (max-width: 375px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const Frame = styled.div`

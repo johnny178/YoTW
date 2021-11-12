@@ -4,8 +4,9 @@ import { Header, Region } from '../components';
 const Home = () => {
   return (
     <>
-      <Header />
-      <Region />
+      <Header>
+        <Region />
+      </Header>
     </>
   );
 };

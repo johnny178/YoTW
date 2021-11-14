@@ -13,3 +13,15 @@ export const HOME_DETAIL = [
   '臺灣南部地區散發著濃厚的歷史文化，臺南市是全台歷史最悠久的文化古都，氣候四季如夏，位於屏東有「臺灣南洋」之稱的墾丁公園，得天獨厚，浮潛融入海中美景、暢玩水上新潮活動，再前往臺灣最南端的「鵝鑾鼻」，左看太平洋右覽臺灣海峽的壯碩景觀。',
   '包含花蓮縣及臺東縣2個縣市，東臨浩瀚太平洋，西倚中央山脈，擁有臨山面海的優越地理位置，東部地區擁有豐富的生態資源、悠久的農業文化和純樸善良的在地居民，是臺灣的「後花園」，非常適合慢活養生之旅，行走在這塊淨土上，放慢你的呼吸頻率，大口吸入甜甜的空氣香。'
 ];
+
+export const INFO_TYPE = {
+  TIME: 'time',
+  ADDRESSTEXT: 'addressText',
+  PHONENUM: 'phonenum',
+  MONEY: 'money',
+  CLASS: 'class',
+  COMMENT: 'comment',
+  OTHER: 'other',
+  WEBSITE: 'website',
+  ORGANIZE: 'Organize',
+};

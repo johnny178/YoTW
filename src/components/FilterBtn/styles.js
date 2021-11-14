@@ -10,7 +10,7 @@ export const Button = styled.button`
   border-radius: 9px;
   background-color: ${({ isActive }) => isActive ? '#283880' : '#FFD965'};
   color: ${({ isActive }) => isActive ? 'white' : '#283880'};
-  font-weight: 900;
+  font-weight: 700;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {

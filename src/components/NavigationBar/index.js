@@ -6,7 +6,7 @@ import IconMedium from '../../images/YOTW LOGO@2x.png';
 
 const NavigationBar = () => {
   const location = useLocation();
-  let isDetailPage = location.pathname.includes(location?.state?.ID);
+  let isDetailPage = location.pathname.includes(location?.state?.ID || '_');
   const [scrollNav, setScrollNav] = useState(false);
   const changeNav = () => {
     if (window.scrollY >= 100) {
@@ -28,8 +28,8 @@ const NavigationBar = () => {
         <Icon src={IconSmall} srcSet={`${IconSmall} 1x, ${IconMedium} 2x`} />
       </Logo>
       <NavBtnCont>
-        <NavBtn to='/' /*target="_blank" */ activeclassname='active'>首頁</NavBtn>
-        <NavBtn to='scenicSpots' /*target="_blank" */ activeclassname='active'>景點</NavBtn>
+        <NavBtn to='/' activeclassname='active'>首頁</NavBtn>
+        <NavBtn to='scenicSpots' activeclassname='active'>景點</NavBtn>
         <NavBtn to='restaurant' activeclassname='active'>餐飲</NavBtn>
         <NavBtn to='hotels' activeclassname='active'>旅宿</NavBtn>
         <NavBtn to='activities' activeclassname='active'>活動</NavBtn>

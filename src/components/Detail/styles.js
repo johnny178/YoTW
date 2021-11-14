@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: ${({ isLoading }) => isLoading ? '150vh' : 'auto'};
 `;
 
 export const Frame = styled.div`
@@ -15,6 +14,10 @@ export const Frame = styled.div`
   @media (max-width: 992px) {
     flex-direction: column;
   }
+  
+  @media (max-width: 600px) {
+    padding: 3vh 6.5vw;
+  }
 `;
 
 export const DetailCont = styled.div`
@@ -25,7 +28,7 @@ export const DetailCont = styled.div`
 
 export const TravelCont = styled.div`
   padding: 0 6.7vw;
-  margin-bottom: 7.2%;
+  margin-bottom: 4.6vh;
 `;
 
 export const Line = styled.div`
@@ -34,16 +37,31 @@ export const Line = styled.div`
   &:not(:last-child){
     margin-bottom: 25px;
   }
+  
+  @media (max-width: 600px) {
+    &:not(:last-child){
+      margin-bottom: 15px;
+    }
+  }
+`;
+
+export const Icon = styled.img`
+  height: 1rem;
+  width: 1rem;
+  object-fit: contain;
+  margin-right: 5px;
+  margin-top: 2px;
 `;
 
 export const Img = styled.img`
   object-fit: cover;
-  width: 55vw;
+  min-width: 55vw;
+  height: 70vh;
   margin-left: 73px;
   border-radius: 8px;
 
   @media (max-width: 992px) {
-    width: 100%;
+    height: 50vh;
     margin-left: 0px;
     margin-top: 30px;
   }
@@ -54,46 +72,70 @@ export const Title1 = styled.h1`
   letter-spacing: 0.6px;
   color: #575757;
   margin-bottom: 30px;
-  font-weight: 900;
+  font-weight: 700;
+
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Title2 = styled.h2`
-  font-size: 1rem;
+  font-size: 1.3rem;
   letter-spacing: 0.48px;
   color: #575757;
   margin-bottom: 10px;
-  font-weight: 700;
+  font-weight: 500;
+  
+  @media (max-width: 600px) {
+    margin-bottom: 5px;
+  }
 `;
 
 export const Paragraph = styled.p`
   font-size: 1rem;
   letter-spacing: 0.48px;
   color: #70735D;
-  font-weight: 700;
+  font-weight: 500;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
 `;
 
-export const Icon = styled.img`
-  width: 31px;
-  height: 25px;
-  margin-right: 20px;
+export const Tag = styled.p`
+  border-radius: 0.5rem;
+  margin: 0px 6.4px 5px 0;
+  padding: 0.2rem 0.3rem;
+  background-color: #283880;
+  color: white;
+`;
+
+export const Url = styled.a`  
+  color: #70735D;
+  text-decoration: underline;
 `;
 
 //底部推薦區塊
 export const RecommendCont = styled.div`
-  padding: 5vh 7%;
-  background-color: #FFD965;
+  padding: 3.5rem 7%;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+
+  @media (max-width: 600px) {
+    padding: 2rem 7%;
+  }
 `;
 
 export const RecommendHeader = styled.h1`
   font-size: 2rem;
   letter-spacing: 0.6px;
-  color: #283880;
-  margin-bottom: 5vh;
+  margin-bottom: 2rem;
   text-align: center;
-  font-weight: 900;
+  font-weight: 700;
+  color: white;
 
   @media (max-width: 600px) {
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 `;
 

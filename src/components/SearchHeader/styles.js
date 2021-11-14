@@ -47,7 +47,7 @@ export const Searchbar = styled.input`
 
   &::placeholder {
     color: rgba(87, 87, 87, 0.4);
-    font-weight: 900;
+    font-weight: 700;
   }
 
   @media (max-width: 992px) {

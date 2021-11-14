@@ -15,18 +15,19 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/:searchResultId' element={<DetailPage />} />
 
         <Route path='scenicSpots' element={<ScenicSpots />} />
         <Route path='scenicSpots/:scenicSpotId' element={<DetailPage />} />
 
         <Route path='hotels' element={<Hotels />} />
-        <Route path='hotels/:scenicSpotId' element={<DetailPage />} />
+        <Route path='hotels/:hotelsId' element={<DetailPage />} />
 
         <Route path='activities' element={<Activity />} />
-        <Route path='activities/:scenicSpotId' element={<DetailPage />} />
+        <Route path='activities/:activitiesId' element={<DetailPage />} />
 
         <Route path='restaurant' element={<Restaurant />} />
-        <Route path='restaurant/:scenicSpotId' element={<DetailPage />} />
+        <Route path='restaurant/:restaurantId' element={<DetailPage />} />
       </Routes>
       <Footer />
     </>

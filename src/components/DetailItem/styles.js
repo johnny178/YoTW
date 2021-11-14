@@ -5,47 +5,46 @@ export const Item = styled(Link)`
   display: flex;
   flex-direction: column;
   padding: 17px;
-  border-radius:  6px;
+  border-radius: 6px;
   box-shadow: -3px 3px 6px #70735D6E;
   border: 1px solid #70735DA3;
   margin: ${({ margin }) => margin ? margin : ''};
   background-color: white;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
   object-fit: cover;
   margin-bottom: 17px;
   height: min(200px, 50vw);
-  
-  width: ${({ isDetailPage }) => isDetailPage ? '17vw' : ''};
+  width: 17vw;
   
   @media (max-width: 1200px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '25vw' : ''};
+    width: 25vw;
   }
   
   @media (max-width: 768px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '40vw' : ''};
+    width: 40vw;
   }
 
   @media (max-width: 600px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '55vw' : ''};
-    margin-bottom: 15px;
+    width: 58vw;
   }
 `;
 
 export const DetailCont = styled.div`
-  width: ${({ isDetailPage }) => isDetailPage ? '17vw' : ''};
+  width: 17vw;
   
   @media (max-width: 1200px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '25vw' : ''};
+    width: 25vw;
   }
   
   @media (max-width: 768px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '40vw' : ''};
+    width: 40vw;
   }
 
   @media (max-width: 600px) {
-    width: ${({ isDetailPage }) => isDetailPage ? '55vw' : ''};
+    width: 58vw;
   }
 `;
 
@@ -55,6 +54,7 @@ export const Name = styled.h1`
   letter-spacing: 0.48px;
   font-weight: 900;
   color: #575757;
+  text-align: start;
 
   @media (max-width: 600px) {
     margin-bottom: 13px;

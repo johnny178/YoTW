@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Frame, GridCont, HeaderBackgroundImg, HeaderCont, Searchbar, SearchCont, SvgWrapper, Title } from './styles';
 
-import HeaderImage from '../../../images/taipei-banner.png';
+import HeaderImageSmall from '../../../images/HOME banner.png';
+import HeaderImageMedium from '../../../images/HOME banner@2x.png';
 import { getAllActivities, getAllHotels, getAllRestaurant, getAllScenicSpots } from '../../../api';
 import { Loader, ResultItem } from '../..';
 import { ReactComponent as Search } from '../../../images/svg/ico_search.svg';
@@ -17,7 +18,6 @@ const Header = (props) => {
   }, []);
 
   let arrApi = [getAllScenicSpots, getAllActivities, getAllRestaurant, getAllHotels];
-  let arrRoute = ['/scenicSpots', '/activities', '/restaurant', '/hotels'];
 
   const searchData = async (value) => {
     setLoading(true);
@@ -27,7 +27,7 @@ const Header = (props) => {
       ['$format', 'JSON'],
     ]);
 
-    for (let i = 0; i < arrRoute.length - 1; i++) {
+    for (let i = 0; i < arrApi.length - 1; i++) {
       let resp = await arrApi[i](searchParam.toString());
       if (resp.data.length !== 0) {
         searchData = [...searchData, ...resp.data];
@@ -54,7 +54,7 @@ const Header = (props) => {
     }
   };
 
-  const renderScenicSpots = () => (
+  const renderSearchResult = () => (
     pageData.map((item, index) => {
       if (item?.Picture?.PictureUrl1.includes('210.69') ||
         item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
@@ -82,7 +82,7 @@ const Header = (props) => {
         <Frame isLoading={loading}>
           {loading && <Loader />}
           <GridCont>
-            {renderScenicSpots()}
+            {renderSearchResult()}
           </GridCont>
         </Frame>
       );
@@ -94,7 +94,7 @@ const Header = (props) => {
   return (
     <>
       <HeaderCont>
-        <HeaderBackgroundImg src={HeaderImage} alt={'headerImage'} />
+        <HeaderBackgroundImg src={HeaderImageSmall} srcSet={`${HeaderImageSmall} 1x, ${HeaderImageMedium} 2x`} alt={'headerImage'} />
         <Title>Enjoy your trip with </Title>
         <SearchCont>
           <Searchbar

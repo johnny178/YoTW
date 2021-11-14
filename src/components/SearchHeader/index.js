@@ -32,6 +32,21 @@ const SearchHeader = ({
     }
   };
 
+  // const getImg = () => {
+  //   switch (location.pathname.slice(1)) {
+  //     case 'scenicSpots':
+  //       return 'GO';
+  //     case 'hotels':
+  //       return 'LIVE';
+  //     case 'activities':
+  //       return 'PLAY';
+  //     case 'restaurant':
+  //       return 'EAT';
+  //     default:
+  //       return 'YOTW';
+  //   }
+  // }
+
   return (
     <HeaderCont>
       <HeaderBackgroundImg src={headerImage} alt={'headerImage'} />

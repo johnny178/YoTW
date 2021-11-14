@@ -2,22 +2,24 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  /* position: fixed; */
-  background-color: #1986CE;
-  height: 100px;
+  background-color: #CECECE;
+  height: 80px;
   width: 100%;
 `;
 
-export const Frame = styled.div``;
+export const Frame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Text = styled.p`
   font-size: 1rem;
-  color: white;
 
-  @media (max-width: 600px) {
-    font-size: 0.75rem;
+  @media (max-width: 600px){
+    display: ${({ isHidden }) => isHidden && 'none'};
   }
 `;
 
@@ -25,4 +27,8 @@ export const Url = styled.a`
   text-decoration: underline;
   cursor: pointer;
   margin-left: 5px;
+`;
+
+export const Icon = styled.img`
+  margin-bottom: 5px;
 `;

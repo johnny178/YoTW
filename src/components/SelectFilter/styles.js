@@ -31,18 +31,18 @@ export const SelectBtn = styled.button`
   padding: 7px 0;
   font-size: 1rem;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 700;
 
   &::before{
     content: '\\25BC';
     margin-right: 2rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 
   &::after{
     content: '\\25BC';
     margin-left: 2rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 `;
 

@@ -89,10 +89,6 @@ const ActivitiesSection = () => {
     setPageNumber(1);
   };
 
-  // function parseIsoDatetime(dtstr) {
-  //   var dt = dtstr.split(/[: T-]/).map(parseFloat);
-  //   return `${dt[0]}/${dt[1]}/${dt[2]}`;
-  // }
 
   const renderActivities = () => (
     activities.map((item, index) => {
@@ -103,7 +99,6 @@ const ActivitiesSection = () => {
         item?.Name.includes('Test')
       )
         return;
-      // let duration = `${parseIsoDatetime(item.StartTime)} ~ ${parseIsoDatetime(item.EndTime)}`;
 
       return (
         <ResultItem

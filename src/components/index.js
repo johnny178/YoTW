@@ -6,6 +6,7 @@ export { default as NavigationBar } from './NavigationBar';
 export { default as Layout } from './Layout';
 export { default as SelectFilter } from './SelectFilter';
 export { default as ResultItem } from './ResultItem';
+export { default as DetailItem } from './DetailItem';
 export { default as Detail } from './Detail';
 export { default as SearchHeader } from './SearchHeader';
 export { default as Header } from './Home/Header';

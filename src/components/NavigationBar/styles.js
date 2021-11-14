@@ -36,7 +36,7 @@ export const NavBtn = styled(NavLink)`
   color: #4D8FB2;
   font-size: 1.375rem;
   padding: 2px 0 2px;
-  font-weight: 900;
+  font-weight: 700;
   
   &:not(:last-child) {
     margin-right: 20px;

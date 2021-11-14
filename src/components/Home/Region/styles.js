@@ -82,7 +82,7 @@ export const DetailCont = styled.div`
 
 export const Title = styled.h2`
   font-size: 1.25rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #575757;
   letter-spacing: 0.6px;
   margin-bottom: 5px;
@@ -90,7 +90,7 @@ export const Title = styled.h2`
 
 export const Content = styled.p`
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   color: #70735D;
 `;
 

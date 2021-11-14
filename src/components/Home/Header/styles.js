@@ -8,6 +8,7 @@ export const HeaderBackgroundImg = styled.img`
   width: 100vw;
   height: 70vh;
   object-fit: cover;
+  object-position: right center;
 `;
 
 export const Title = styled.h1`
@@ -55,7 +56,7 @@ export const Searchbar = styled.input`
 
   &::placeholder {
     color: rgba(87, 87, 87, 0.4);
-    font-weight: 900;
+    font-weight: 700;
   }
 
   @media (max-width: 992px) {
@@ -76,10 +77,11 @@ export const SvgWrapper = styled.button`
   width: 33px;
   height: 33px;
   margin-left: 10px;
-  
+
   & path {
     fill: #B2E4FF;
-  } 
+    stroke-width: 10;
+  }
 `;
 
 export const Frame = styled.div`

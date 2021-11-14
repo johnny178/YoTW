@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import {
   DetailCont,
   Image,
@@ -10,7 +11,7 @@ import {
   ClassCont,
   TagCont,
   Tag,
-} from './style';
+} from './styles';
 
 import AddressSmall from '../../images/景介紹頁-locol icon.png';
 import AddressMedium from '../../images/景介紹頁-locol icon@2x.png';
@@ -18,8 +19,7 @@ import AddressMedium from '../../images/景介紹頁-locol icon@2x.png';
 import BookSmall from '../../images/景介紹頁-book icon.png';
 import BookMedium from '../../images/景介紹頁-book icon@2x.png';
 
-const ResultItem = React.forwardRef((props, ref) => {
-  const { data, margin } = props;
+const DetailItem = ({ data, margin }) => {
   const {
     Picture,
     Address,
@@ -31,6 +31,7 @@ const ResultItem = React.forwardRef((props, ref) => {
     EndTime
   } = data;
   const [arrClass, setArrClass] = useState([]);
+  const location = useLocation();
 
   let openTime = data?.OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (data?.OpenTime?.length > 30 ? (data?.OpenTime?.slice(0, 30) ?? '') + '...' : data?.OpenTime ?? '');
@@ -52,14 +53,14 @@ const ResultItem = React.forwardRef((props, ref) => {
 
   return (
     <Item
-      ref={ref}
       key={data.ID}
-      to={data.ID}
-      state={data}
       margin={margin ?? ''}
+      to={`/${location.pathname.split('/')[1]}/${data.ID}`}
+      onClick={() => localStorage.setItem('referrer', JSON.stringify(data))}
+      target="_blank"
     >
       <Image src={Picture?.PictureUrl1} alt={Picture?.PictureDescription1} />
-      <DetailCont >
+      <DetailCont>
         <Name>{data?.Name?.replaceAll('.', '')}</Name>
         {
           Address &&
@@ -92,7 +93,6 @@ const ResultItem = React.forwardRef((props, ref) => {
       </DetailCont>
     </Item>
   );
-});
-ResultItem.displayName = 'ResultItem';
+};
 
-export default ResultItem;
+export default DetailItem;

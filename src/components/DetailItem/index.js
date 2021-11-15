@@ -19,6 +19,9 @@ import AddressMedium from '../../images/景介紹頁-locol icon@2x.png';
 import BookSmall from '../../images/景介紹頁-book icon.png';
 import BookMedium from '../../images/景介紹頁-book icon@2x.png';
 
+import TagSmall from '../../images/標籤icon.png';
+import TagMedium from '../../images/標籤icon@2x.png';
+
 const DetailItem = ({ data, margin }) => {
   const {
     Picture,
@@ -50,16 +53,17 @@ const DetailItem = ({ data, margin }) => {
     return `${dt[0]}/${dt[1]}/${dt[2]}`;
   };
   let duration = (StartTime && EndTime) ? `${parseIsoDatetime(StartTime)} ~ ${parseIsoDatetime(EndTime)}` : '';
+  let route = location.pathname.split('/')[0] !== '' ? `/${location.pathname.split('/')[1]}/${data.ID}` : `/${data.ID}`;
 
   return (
     <Item
       key={data.ID}
       margin={margin ?? ''}
-      to={`/${location.pathname.split('/')[1]}/${data.ID}`}
+      to={route}
       onClick={() => localStorage.setItem('referrer', JSON.stringify(data))}
       target="_blank"
     >
-      <Image src={Picture?.PictureUrl1} alt={Picture?.PictureDescription1} />
+      <Image src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3} alt={Picture?.PictureDescription1} />
       <DetailCont>
         <Name>{data?.Name?.replaceAll('.', '')}</Name>
         {
@@ -79,7 +83,7 @@ const DetailItem = ({ data, margin }) => {
         {
           arrClass.length > 0 &&
           <ClassCont>
-            <Icon src={BookSmall} srcSet={`${BookSmall} 1x, ${BookMedium} 2x`} />
+            <Icon src={TagSmall} srcSet={`${TagSmall} 1x, ${TagMedium} 2x`} />
             <TagCont>
 
               {

@@ -130,8 +130,8 @@ const Detail = () => {
   };
 
   const renderNearbySection = (data, text) => {
-    count++;
     if (data.length > 0) {
+      count++;
       return (
         <RecommendCont backgroundColor={backgroundColor[count]}>
           <RecommendHeader >{text}</RecommendHeader>
@@ -187,10 +187,15 @@ const Detail = () => {
         <Img src={Picture.PictureUrl1} alt={Picture.PictureDescription1} />
       </Frame>
 
-      {(TravelInfo || ParkingInfo) &&
+      {TravelInfo &&
         <TravelCont>
           <Title2>交通方式</Title2>
           <Paragraph>{TravelInfo}</Paragraph>
+        </TravelCont>
+      }
+      {ParkingInfo &&
+        <TravelCont>
+          <Title2>停車資訊</Title2>
           <Paragraph>{ParkingInfo}</Paragraph>
         </TravelCont>
       }

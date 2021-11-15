@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Frame, GridCont, HeaderBackgroundImg, HeaderCont, Searchbar, SearchCont, SvgWrapper, Title } from './styles';
 
-import HeaderImageSmall from '../../../images/HOME banner.png';
-import HeaderImageMedium from '../../../images/HOME banner@2x.png';
+import HeaderImageSmall from '../../../images/HOME-banner.png';
+import HeaderImageMedium from '../../../images/HOME-banner@2x.png';
 import { getAllActivities, getAllHotels, getAllRestaurant, getAllScenicSpots } from '../../../api';
 import { Loader, ResultItem } from '../..';
 import { ReactComponent as Search } from '../../../images/svg/ico_search.svg';

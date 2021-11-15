@@ -86,6 +86,8 @@ export const SvgWrapper = styled.button`
 
 export const Frame = styled.div`
   height: ${({ isLoading }) => isLoading ? '150vh' : 'auto'};
+  max-width: 1440px;
+  margin: auto;
 `;
 
 export const GridCont = styled.div`
@@ -94,7 +96,6 @@ export const GridCont = styled.div`
   margin: 3% 0px;
   grid-gap: 27px;
   padding-bottom: 5%;
-  max-width: 1440px;
 
   @media (max-width: 1512px) {
     padding: 0 3% 5%;
@@ -110,5 +111,6 @@ export const GridCont = styled.div`
   
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, minmax(5rem, 1fr));
+    width: 97vw;
   }
 `;

@@ -101,7 +101,7 @@ export const Tag = styled.p`
   border-radius: 0.5rem;
   margin-right: 6.4px;
   margin-bottom: 5px;
-  padding: 0rem 0.3rem;
+  padding: 0.2rem 0.3rem;
   background-color: #283880;
   color: white;
 `;

@@ -23,7 +23,7 @@ export const Logo = styled(NavLink)``;
 export const Icon = styled.img`
   margin-top: 2px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     display: ${({ isHide }) => isHide && 'none'};
   }
 `;
@@ -32,7 +32,7 @@ export const Icon2 = styled.img`
   margin-top: 2px;
   display: none;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     width: 90%;
     display: ${({ isHide }) => isHide && 'unset'};
   }
@@ -45,7 +45,7 @@ export const NavBtnCont = styled.div`
 export const NavBtn = styled(NavLink)`
   color: #575757;
   font-size: 1.375rem;
-  padding: 2px 0 2px;
+  padding: 2px 0 4px;
   font-weight: 700;
   
   &:not(:last-child) {

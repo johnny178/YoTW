@@ -3,16 +3,16 @@ import { CentralImage, Container, Content, DetailCont, EeasternImage, Frame, Ico
 import { HOME_REGION, HOME_DETAIL } from '../../../constants/pageData';
 
 import Northern from '../../../images/Home-northern.png';
-import NorthernIcon from '../../../images/Home-northern icon.png';
+import NorthernIcon from '../../../images/Home-northern-icon.png';
 
 import Central from '../../../images/Home-central.png';
-import CentralIcon from '../../../images/Home-central icon.png';
+import CentralIcon from '../../../images/Home-central-icon.png';
 
 import Southern from '../../../images/Home-southern.png';
-import SouthernIcon from '../../../images/Home-southern icon.png';
+import SouthernIcon from '../../../images/Home-southern-icon.png';
 
 import Eeastern from '../../../images/Home-eastern.png';
-import EeasternIcon from '../../../images/Home-central icon.png';
+import EeasternIcon from '../../../images/Home-central-icon.png';
 
 const Region = () => {
   return (

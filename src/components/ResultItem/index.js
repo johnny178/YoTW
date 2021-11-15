@@ -10,13 +10,16 @@ import {
   ClassCont,
   TagCont,
   Tag,
-} from './style';
+} from './styles';
 
 import AddressSmall from '../../images/景介紹頁-locol icon.png';
 import AddressMedium from '../../images/景介紹頁-locol icon@2x.png';
 
 import BookSmall from '../../images/景介紹頁-book icon.png';
 import BookMedium from '../../images/景介紹頁-book icon@2x.png';
+
+import TagSmall from '../../images/標籤icon.png';
+import TagMedium from '../../images/標籤icon@2x.png';
 
 const ResultItem = React.forwardRef((props, ref) => {
   const { data, margin } = props;
@@ -58,7 +61,7 @@ const ResultItem = React.forwardRef((props, ref) => {
       state={data}
       margin={margin ?? ''}
     >
-      <Image src={Picture?.PictureUrl1} alt={Picture?.PictureDescription1} />
+      <Image src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3} alt={Picture?.PictureDescription1} />
       <DetailCont >
         <Name>{data?.Name?.replaceAll('.', '')}</Name>
         {
@@ -78,7 +81,7 @@ const ResultItem = React.forwardRef((props, ref) => {
         {
           arrClass.length > 0 &&
           <ClassCont>
-            <Icon src={BookSmall} srcSet={`${BookSmall} 1x, ${BookMedium} 2x`} />
+            <Icon src={TagSmall} srcSet={`${TagSmall} 1x, ${TagMedium} 2x`} />
             <TagCont>
 
               {

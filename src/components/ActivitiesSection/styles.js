@@ -31,5 +31,6 @@ export const GridCont = styled.div`
   
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, minmax(5rem, 1fr));
+    width: 97vw;
   }
 `;

@@ -1,4 +1,4 @@
-# YoTw - Taiwan Tourist Attractions Website
+# YoTW - Taiwan Tourist Attractions Website
 
 ![screenshot](https://github.com/johnny178/YoTW/blob/master/screenshot.jpg)
 ## Features

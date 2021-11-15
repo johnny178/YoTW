@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Icon, Logo, NavBtn, NavBtnCont } from './styles';
+import { Header, Icon, Icon2, Logo, NavBtn, NavBtnCont } from './styles';
 import { useLocation } from 'react-router';
 import IconSmall from '../../images/YOTW LOGO.png';
 import IconMedium from '../../images/YOTW LOGO@2x.png';
+
+import HeaderIconSmall from '../../images/header-YoTW.png';
+import HeaderIconMedium from '../../images/header-YoTW@2x.png';
 
 const NavigationBar = () => {
   const location = useLocation();
@@ -25,7 +28,8 @@ const NavigationBar = () => {
   return (
     <Header scrollNav={scrollNav} isDetailPage={isDetailPage}>
       <Logo to='/'>
-        <Icon src={IconSmall} srcSet={`${IconSmall} 1x, ${IconMedium} 2x`} />
+        <Icon2 isHide={true} src={IconSmall} srcSet={`${IconSmall} 1x, ${IconMedium} 2x`} />
+        <Icon isHide={true} src={HeaderIconSmall} srcSet={`${HeaderIconSmall} 1x, ${HeaderIconMedium} 2x`} />
       </Logo>
       <NavBtnCont>
         <NavBtn to='/' activeclassname='active'>首頁</NavBtn>

@@ -5,7 +5,6 @@ import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
 import { Container, GridCont, Frame } from './styles';
-import HeaderImage from '../../images/taipei-banner.png';
 
 const ScenicSpotsSection = () => {
   const [countrySelect, setCountrySelect] = useState('全台');
@@ -108,7 +107,6 @@ const ScenicSpotsSection = () => {
   return (
     <Container>
       <SearchHeader
-        headerImage={HeaderImage}
         searchValue={searchValue}
         handleSearch={e => handleSearch(e)}
         regionSelect={regionSelect}

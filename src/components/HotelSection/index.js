@@ -4,7 +4,6 @@ import { getAllHotels, getSpecificHotels } from '../../api';
 import { countryDic, regionTaiwan } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
-import HeaderImage from '../../images/taipei-banner.png';
 import { Container, Frame, GridCont, } from './styles';
 
 const HotelSection = () => {
@@ -108,7 +107,6 @@ const HotelSection = () => {
   return (
     <Container>
       <SearchHeader
-        headerImage={HeaderImage}
         searchValue={searchValue}
         handleSearch={e => handleSearch(e)}
         regionSelect={regionSelect}

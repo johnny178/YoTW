@@ -4,7 +4,6 @@ import { getAllActivities, getSpecificActivities } from '../../api';
 import { regionTaiwan, countryDic } from '../../constants/filterData';
 import { PAGE_NUM } from '../../constants/pageData';
 import useHttp from '../../hooks/useHttp';
-import HeaderImage from '../../images/taipei-banner.png';
 import { Frame } from '../HotelSection/styles';
 import {
   Container,
@@ -113,7 +112,6 @@ const ActivitiesSection = () => {
   return (
     <Container>
       <SearchHeader
-        headerImage={HeaderImage}
         searchValue={searchValue}
         handleSearch={e => handleSearch(e)}
         regionSelect={regionSelect}

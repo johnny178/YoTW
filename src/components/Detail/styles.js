@@ -105,7 +105,7 @@ export const Paragraph = styled.p`
 export const Tag = styled.p`
   border-radius: 0.5rem;
   margin: 0px 6.4px 5px 0;
-  padding: 0.2rem 0.3rem;
+  padding: 0 0.3rem;
   background-color: #283880;
   color: white;
 `;

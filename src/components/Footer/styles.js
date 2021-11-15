@@ -18,7 +18,7 @@ export const Frame = styled.div`
 export const Text = styled.p`
   font-size: 1rem;
 
-  @media (max-width: 600px){
+  @media (max-width: 768px){
     display: ${({ isHidden }) => isHidden && 'none'};
   }
 `;

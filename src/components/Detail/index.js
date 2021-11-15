@@ -36,8 +36,17 @@ import BookMedium from '../../images/景介紹頁-book icon@2x.png';
 import MoneySmall from '../../images/宿介紹-money icon-1.png';
 import MoneyMedium from '../../images/宿介紹-money icon-1@2x.png';
 
+import WebsiteSmall from '../../images/官網icon.png';
+import WebsiteMedium from '../../images/官網icon@2x.png';
+
+import OrganizerSmall from '../../images/單位icon.png';
+import OrganizerMedium from '../../images/單位icon@2x.png';
+
 import OtherSmall from '../../images/宿介紹-other icon.png';
 import OtherMedium from '../../images/宿介紹-other icon@2x.png';
+
+import TagSmall from '../../images/標籤icon.png';
+import TagMedium from '../../images/標籤icon@2x.png';
 
 const Detail = () => {
   const [scenicSpotsData, setScenicSpotsData] = useState([]);
@@ -79,17 +88,19 @@ const Detail = () => {
   let openTime = OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (OpenTime ?? '');
   let duration = (StartTime && EndTime) ? `${parseIsoDatetime(StartTime)} ~ ${parseIsoDatetime(EndTime)}` : '';
+  let backgroundColor = ['#FFD965', '#588310', '#DD5252'];
+  let count = -1;
 
   let Infos = [
     { text: openTime || duration, icon: [BookSmall, BookMedium], type: INFO_TYPE.TIME },
     { text: Address, icon: [AddressSmall, AddressMedium], type: INFO_TYPE.ADDRESSTEXT },
     { text: Phone, icon: [PhoneSmall, PhoneMedium], type: INFO_TYPE.PHONENUM },
-    { text: WebsiteUrl, icon: [MoneySmall, MoneyMedium], type: INFO_TYPE.WEBSITE },
-    { text: Organizer, icon: [MoneySmall, MoneyMedium], type: INFO_TYPE.ORGANIZE },
+    { text: WebsiteUrl, icon: [WebsiteSmall, WebsiteMedium], type: INFO_TYPE.WEBSITE },
+    { text: Organizer, icon: [OrganizerSmall, OrganizerMedium], type: INFO_TYPE.ORGANIZE },
     { text: ServiceInfo?.replaceAll('<br>', '') || Cycle, icon: [OtherSmall, OtherMedium], type: INFO_TYPE.OTHER },
     { text: TicketInfo || Spec, icon: [MoneySmall, MoneyMedium], type: INFO_TYPE.MONEY },
     { text: Description || DescriptionDetail, icon: [CommentSmall, CommentMedium], type: INFO_TYPE.COMMENT },
-    { text: Class || Class1 || Class2 || Class3, icon: [MoneySmall, MoneyMedium], type: INFO_TYPE.CLASS },
+    { text: Class || Class1 || Class2 || Class3, icon: [TagSmall, TagMedium], type: INFO_TYPE.CLASS },
   ];
 
   useEffect(() => {
@@ -118,11 +129,12 @@ const Detail = () => {
     }
   };
 
-  const renderNearbySection = (data, text, backgroundColor, color) => {
+  const renderNearbySection = (data, text) => {
+    count++;
     if (data.length > 0) {
       return (
-        <RecommendCont backgroundColor={backgroundColor}>
-          <RecommendHeader color={color}>{text}</RecommendHeader>
+        <RecommendCont backgroundColor={backgroundColor[count]}>
+          <RecommendHeader >{text}</RecommendHeader>
           <ItemsBlock>
             {
               data.map((item, index) => {

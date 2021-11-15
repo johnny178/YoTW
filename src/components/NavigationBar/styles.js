@@ -9,7 +9,7 @@ export const Header = styled.header`
   align-items: center;
   height: 50px;
   position: fixed;
-  background: ${({ scrollNav, isDetailPage }) => (scrollNav || isDetailPage ? '#B2E4FF' : 'transparent')};
+  background: ${({ scrollNav, isDetailPage }) => (scrollNav || isDetailPage ? '#EDEDED' : 'transparent')};
   transition: 800ms background-color ease;
   z-index: 99;
 
@@ -24,7 +24,17 @@ export const Icon = styled.img`
   margin-top: 2px;
 
   @media (max-width: 600px) {
+    display: ${({ isHide }) => isHide && 'none'};
+  }
+`;
+
+export const Icon2 = styled.img`
+  margin-top: 2px;
+  display: none;
+
+  @media (max-width: 600px) {
     width: 90%;
+    display: ${({ isHide }) => isHide && 'unset'};
   }
 `;
 
@@ -33,7 +43,7 @@ export const NavBtnCont = styled.div`
 `;
 
 export const NavBtn = styled(NavLink)`
-  color: #4D8FB2;
+  color: #575757;
   font-size: 1.375rem;
   padding: 2px 0 2px;
   font-weight: 700;

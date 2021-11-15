@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "YOTW_icon_192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "YOTW_icon_16.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "16x16"
     }
   ],
   "start_url": ".",

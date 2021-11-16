@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { DetailItem } from '..';
+import { DetailItem, GoogleMap } from '..';
 import { getAllActivities, getAllHotels, getAllRestaurant, getAllScenicSpots } from '../../api';
 import { PAGE_NUM, INFO_TYPE } from '../../constants/pageData';
 import {
@@ -77,8 +77,9 @@ const Detail = () => {
     ServiceInfo,
     Cycle,
     WebsiteUrl,
-    Organizer
+    Organizer,
   } = location.state || JSON.parse(localStorage.getItem('referrer'));
+  const isMapFullWidth = !TravelInfo && !ParkingInfo;
 
   const parseIsoDatetime = dtstr => {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);
@@ -134,7 +135,7 @@ const Detail = () => {
       count++;
       return (
         <RecommendCont backgroundColor={backgroundColor[count]}>
-          <RecommendHeader >{text}</RecommendHeader>
+          <RecommendHeader>{text}</RecommendHeader>
           <ItemsBlock>
             {
               data.map((item, index) => {
@@ -187,23 +188,28 @@ const Detail = () => {
         <Img src={Picture.PictureUrl1} alt={Picture.PictureDescription1} />
       </Frame>
 
-      {TravelInfo &&
+      <Frame isFullWidth={isMapFullWidth}>
+        {ParkingInfo &&
+          <TravelCont>
+            <Title2>停車資訊</Title2>
+            <Paragraph>{ParkingInfo}</Paragraph>
+          </TravelCont>
+        }
         <TravelCont>
           <Title2>交通方式</Title2>
           <Paragraph>{TravelInfo}</Paragraph>
         </TravelCont>
-      }
-      {ParkingInfo &&
-        <TravelCont>
-          <Title2>停車資訊</Title2>
-          <Paragraph>{ParkingInfo}</Paragraph>
-        </TravelCont>
-      }
+        <GoogleMap
+          isMapFullWidth={isMapFullWidth}
+          position={Position}
+          name={Name}
+        />
+      </Frame>
       {renderNearbySection(scenicSpotsData, '看看附近的景點', '#FFD965')}
       {renderNearbySection(restaurantData, '看看附近的餐飲', '#FFD965')}
       {renderNearbySection(hotelsData, '看看附近的旅宿', '#588310')}
       {renderNearbySection(activitiesData, '看看附近的活動', '#DD5252')}
-    </Container>
+    </Container >
   );
 };
 

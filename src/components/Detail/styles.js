@@ -7,12 +7,20 @@ export const Container = styled.div`
 
 export const Frame = styled.div`
   display: flex;
-  padding: 4.6vh 6.5vw;
-  margin-top: 50px;
+  padding: 2.3vh 6.5vw;
   justify-content: space-between;
+  flex-direction: ${({ isFullWidth }) => isFullWidth ? 'column' : 'row'};;
+
+  &:first-child {
+    margin-top: 50px;
+    align-items: flex-end;
+  }
 
   @media (max-width: 992px) {
     flex-direction: column;
+    &:first-child {
+      align-items: unset;
+    }
   }
   
   @media (max-width: 600px) {
@@ -23,12 +31,10 @@ export const Frame = styled.div`
 export const DetailCont = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 `;
 
 export const TravelCont = styled.div`
-  padding: 0 6.7vw;
-  margin-bottom: 4.6vh;
+  margin-bottom: 4vh;
 `;
 
 export const Line = styled.div`
@@ -56,12 +62,12 @@ export const Icon = styled.img`
 export const Img = styled.img`
   object-fit: cover;
   min-width: 55vw;
-  height: 70vh;
+  height: 40vw;
   margin-left: 73px;
   border-radius: 8px;
 
   @media (max-width: 992px) {
-    height: 50vh;
+    height: 75vw;
     margin-left: 0px;
     margin-top: 30px;
   }

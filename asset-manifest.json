@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/YoTW/static/js/main.e8260ccc.chunk.js",
-    "main.js.map": "/YoTW/static/js/main.e8260ccc.chunk.js.map",
+    "main.js": "/YoTW/static/js/main.b5719095.chunk.js",
+    "main.js.map": "/YoTW/static/js/main.b5719095.chunk.js.map",
     "runtime-main.js": "/YoTW/static/js/runtime-main.f0225c94.js",
     "runtime-main.js.map": "/YoTW/static/js/runtime-main.f0225c94.js.map",
-    "static/js/2.18d1eefb.chunk.js": "/YoTW/static/js/2.18d1eefb.chunk.js",
-    "static/js/2.18d1eefb.chunk.js.map": "/YoTW/static/js/2.18d1eefb.chunk.js.map",
+    "static/js/2.2fa58f2f.chunk.js": "/YoTW/static/js/2.2fa58f2f.chunk.js",
+    "static/js/2.2fa58f2f.chunk.js.map": "/YoTW/static/js/2.2fa58f2f.chunk.js.map",
     "index.html": "/YoTW/index.html",
-    "static/js/2.18d1eefb.chunk.js.LICENSE.txt": "/YoTW/static/js/2.18d1eefb.chunk.js.LICENSE.txt",
+    "static/js/2.2fa58f2f.chunk.js.LICENSE.txt": "/YoTW/static/js/2.2fa58f2f.chunk.js.LICENSE.txt",
     "static/media/HOME-banner.c367da19.png": "/YoTW/static/media/HOME-banner.c367da19.png",
     "static/media/HOME-banner@2x.c9ead79c.png": "/YoTW/static/media/HOME-banner@2x.c9ead79c.png",
     "static/media/Home-central.a2eda600.png": "/YoTW/static/media/Home-central.a2eda600.png",
@@ -20,7 +20,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f0225c94.js",
-    "static/js/2.18d1eefb.chunk.js",
-    "static/js/main.e8260ccc.chunk.js"
+    "static/js/2.2fa58f2f.chunk.js",
+    "static/js/main.b5719095.chunk.js"
   ]
 }

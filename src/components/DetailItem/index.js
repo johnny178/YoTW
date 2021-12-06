@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
 import {
   DetailCont,
   Image,
@@ -22,7 +21,7 @@ import BookMedium from '../../images/景介紹頁-book icon@2x.png';
 import TagSmall from '../../images/標籤icon.png';
 import TagMedium from '../../images/標籤icon@2x.png';
 
-const DetailItem = ({ data, margin }) => {
+const DetailItem = ({ data, margin, sectionName }) => {
   const {
     Picture,
     Address,
@@ -34,7 +33,6 @@ const DetailItem = ({ data, margin }) => {
     EndTime
   } = data;
   const [arrClass, setArrClass] = useState([]);
-  const location = useLocation();
 
   let openTime = data?.OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (data?.OpenTime?.length > 30 ? (data?.OpenTime?.slice(0, 30) ?? '') + '...' : data?.OpenTime ?? '');
@@ -46,21 +44,19 @@ const DetailItem = ({ data, margin }) => {
     Class2 && classes.push(Class2);
     Class3 && classes.push(Class3);
     setArrClass(classes);
-  }, []);
+  }, [Class, Class1, Class2, Class3]);
 
   const parseIsoDatetime = dtstr => {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);
     return `${dt[0]}/${dt[1]}/${dt[2]}`;
   };
   let duration = (StartTime && EndTime) ? `${parseIsoDatetime(StartTime)} ~ ${parseIsoDatetime(EndTime)}` : '';
-  let route = location.pathname.split('/')[0] !== '' ? `/${location.pathname.split('/')[1]}/${data.ID}` : `/${data.ID}`;
 
   return (
     <Item
       key={data.ID}
       margin={margin ?? ''}
-      to={route}
-      onClick={() => localStorage.setItem('referrer', JSON.stringify(data))}
+      to={`/${sectionName}/${data.ID}`}
       target="_blank"
     >
       <Image src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3} alt={Picture?.PictureDescription1} />

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { DetailItem, GoogleMap } from '..';
+import { DetailItem, GoogleMap, Loader } from '..';
 import { getAllActivities, getAllHotels, getAllRestaurant, getAllScenicSpots } from '../../api';
 import { PAGE_NUM, INFO_TYPE } from '../../constants/pageData';
 import {
@@ -49,10 +50,12 @@ import TagSmall from '../../images/標籤icon.png';
 import TagMedium from '../../images/標籤icon@2x.png';
 
 const Detail = () => {
+  const [pageData, setPageData] = useState([]);
   const [scenicSpotsData, setScenicSpotsData] = useState([]);
   const [hotelsData, setHotelsData] = useState([]);
   const [activitiesData, setActivitieData] = useState([]);
   const [restaurantData, setRestaurantData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
   const {
@@ -78,7 +81,7 @@ const Detail = () => {
     Cycle,
     WebsiteUrl,
     Organizer,
-  } = location.state || JSON.parse(localStorage.getItem('referrer'));
+  } = pageData || {};
   const isMapFullWidth = !TravelInfo && !ParkingInfo;
 
   const parseIsoDatetime = dtstr => {
@@ -104,23 +107,54 @@ const Detail = () => {
     { text: Class || Class1 || Class2 || Class3, icon: [TagSmall, TagMedium], type: INFO_TYPE.CLASS },
   ];
 
-  useEffect(() => {
-    window.scroll(0, 0);
+  const getPageData = useCallback(async (pathName) => {
+    let getFunc = () => { };
+    let searchId = '';
+    switch (pathName) {
+      case 'scenicSpots':
+        getFunc = getAllScenicSpots;
+        searchId = 'ScenicSpotID';
+        break;
+      case 'hotels':
+        getFunc = getAllHotels;
+        searchId = 'HotelID';
+        break;
+      case 'activities':
+        getFunc = getAllActivities;
+        searchId = 'ActivityID';
+        break;
+      case 'restaurant':
+        getFunc = getAllRestaurant;
+        searchId = 'RestaurantID';
+        break;
+      default:
+        getFunc = getAllScenicSpots;
+        searchId = 'ScenicSpotID';
+        break;
+    }
 
-    let searchParam = new URLSearchParams([
-      ['$top', PAGE_NUM],
-      ['$filter', 'Picture/PictureUrl1 ne null'],
-      ['$format', 'JSON'],
-      ['$spatialFilter', `nearby(${Position.PositionLat}, ${Position.PositionLon}, 1000)`]
-    ]);
+    if (!location?.state) {
+      let searchParam = new URLSearchParams([
+        ['$top', PAGE_NUM],
+        ['$filter', `contains(${searchId},'${location.pathname.split('/')[2]}')`],
+        ['$format', 'JSON'],
+      ]);
 
-    location.pathname.split('/')[1] !== 'scenicSpots' && getNearByData(getAllScenicSpots, searchParam, setScenicSpotsData, 'scenicSpots');
-    location.pathname.split('/')[1] !== 'hotels' && getNearByData(getAllHotels, searchParam, setHotelsData, 'hotels');
-    location.pathname.split('/')[1] !== 'activities' && getNearByData(getAllActivities, searchParam, setActivitieData, 'activities');
-    location.pathname.split('/')[1] !== 'restaurant' && getNearByData(getAllRestaurant, searchParam, setRestaurantData, 'restaurant');
-  }, []);
+      try {
+        let resp = await getFunc(searchParam.toString());
+        setPageData(resp.data[0]);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(`search ${searchId} error`, error);
+      }
+    } else {
+      setPageData(location.state);
+      setIsLoading(false);
+    }
+  }, [location.pathname, location.state]
+  );
 
-  const getNearByData = async (getData, searchParam, setData, type) => {
+  const getNearByData = useCallback(async (getData, searchParam, setData, type) => {
     try {
       let resp = await getData(searchParam.toString());
       //如在該分類之詳細頁，將不顯示自身資料
@@ -128,9 +162,34 @@ const Detail = () => {
     } catch (error) {
       console.log('nearBy data get error', error);
     }
-  };
+  }, [location.pathname]
+  );
 
-  const renderNearbySection = (data, text) => {
+  useEffect(() => {
+    let pathName = location.pathname.split('/')[1];
+    getPageData(pathName);
+  }, [getPageData, location.pathname]);
+
+  useEffect(() => {
+    let pathName = location.pathname.split('/')[1];
+    window.scroll(0, 0);
+
+    let searchParam = new URLSearchParams([
+      ['$top', PAGE_NUM],
+      ['$filter', 'Picture/PictureUrl1 ne null'],
+      ['$format', 'JSON'],
+      ['$spatialFilter', `nearby(${Position?.PositionLat}, ${Position?.PositionLon}, 1000)`]
+    ]);
+
+    if (Position) {
+      pathName !== 'scenicSpots' && getNearByData(getAllScenicSpots, searchParam, setScenicSpotsData, 'scenicSpots');
+      pathName !== 'hotels' && getNearByData(getAllHotels, searchParam, setHotelsData, 'hotels');
+      pathName !== 'activities' && getNearByData(getAllActivities, searchParam, setActivitieData, 'activities');
+      pathName !== 'restaurant' && getNearByData(getAllRestaurant, searchParam, setRestaurantData, 'restaurant');
+    }
+  }, [Position, getNearByData, getPageData, location.pathname]);
+
+  const renderNearbySection = (data, text, sectionName) => {
     if (data.length > 0) {
       count++;
       return (
@@ -152,6 +211,7 @@ const Detail = () => {
                     key={index}
                     data={item}
                     margin={'0 40px 0 0'}
+                    sectionName={sectionName}
                   />
                 );
               })
@@ -161,6 +221,12 @@ const Detail = () => {
       );
     }
   };
+
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
 
   return (
     <Container>
@@ -185,7 +251,7 @@ const Detail = () => {
             })
           }
         </DetailCont>
-        <Img src={Picture.PictureUrl1} alt={Picture.PictureDescription1} />
+        <Img src={Picture?.PictureUrl1} alt={Picture?.PictureDescription1} />
       </Frame>
 
       <Frame isFullWidth={isMapFullWidth}>
@@ -195,20 +261,22 @@ const Detail = () => {
             <Paragraph>{ParkingInfo}</Paragraph>
           </TravelCont>
         }
-        <TravelCont>
-          <Title2>交通方式</Title2>
-          <Paragraph>{TravelInfo}</Paragraph>
-        </TravelCont>
+        {TravelInfo &&
+          <TravelCont>
+            <Title2>交通方式</Title2>
+            <Paragraph>{TravelInfo}</Paragraph>
+          </TravelCont>
+        }
         <GoogleMap
           isMapFullWidth={isMapFullWidth}
           position={Position}
           name={Name}
         />
       </Frame>
-      {renderNearbySection(scenicSpotsData, '看看附近的景點', '#FFD965')}
-      {renderNearbySection(restaurantData, '看看附近的餐飲', '#FFD965')}
-      {renderNearbySection(hotelsData, '看看附近的旅宿', '#588310')}
-      {renderNearbySection(activitiesData, '看看附近的活動', '#DD5252')}
+      {renderNearbySection(scenicSpotsData, '看看附近的景點', 'scenicSpots')}
+      {renderNearbySection(restaurantData, '看看附近的餐飲', 'restaurant')}
+      {renderNearbySection(hotelsData, '看看附近的旅宿', 'hotels')}
+      {renderNearbySection(activitiesData, '看看附近的活動', 'activities')}
     </Container >
   );
 };

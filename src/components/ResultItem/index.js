@@ -45,7 +45,7 @@ const ResultItem = React.forwardRef((props, ref) => {
     Class2 && classes.push(Class2);
     Class3 && classes.push(Class3);
     setArrClass(classes);
-  }, []);
+  }, [Class, Class1, Class2, Class3]);
 
   const parseIsoDatetime = dtstr => {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);

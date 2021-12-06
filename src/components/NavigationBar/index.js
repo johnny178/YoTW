@@ -23,7 +23,7 @@ const NavigationBar = () => {
     if (!isDetailPage) {
       window.addEventListener('scroll', changeNav);
     }
-  }, []);
+  }, [isDetailPage]);
 
   return (
     <Header scrollNav={scrollNav} isDetailPage={isDetailPage}>

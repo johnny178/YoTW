@@ -34,6 +34,6 @@ export default function useHttp(query = '', filterData = '', pageNumber = 1, cal
     return () => {
       clearTimeout(delay);
     };
-  }, [query, filterData, pageNumber]);
+  }, [query, filterData, pageNumber, callAPI]);
   return { loading, error, data, hasMore };
 }

@@ -20,7 +20,7 @@ const RestaurantSection = () => {
     window.scroll(0, 0);
   }, []);
 
-  const setFilterName = () => {
+  const setFilterName = useCallback(() => {
     let name = '';
 
     if ((regionSelect !== '全部地區' && countrySelect === '全台')) {
@@ -33,9 +33,10 @@ const RestaurantSection = () => {
       name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
     }
     return name;
-  };
+  }, [countrySelect, regionSelect, searchValue]
+  );
 
-  const callAPI = async (pageNumber) => {
+  const callAPI = useCallback(async (pageNumber) => {
     let resp = [];
     let filterName = setFilterName();
     let searchParam = new URLSearchParams([
@@ -51,7 +52,8 @@ const RestaurantSection = () => {
       resp = await getSpecificRestaurant(countryDic[countrySelect], searchParam.toString());
     }
     return resp;
-  };
+  }, [countrySelect, setFilterName]
+  );
 
   const {
     data: restaurant,

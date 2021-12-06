@@ -16,7 +16,7 @@ const ScenicSpotsSection = () => {
     window.scroll(0, 0);
   }, []);
 
-  const setFilterName = () => {
+  const setFilterName = useCallback(() => {
     let name = '';
 
     if ((regionSelect !== '全部地區' && countrySelect === '全台')) {
@@ -29,9 +29,10 @@ const ScenicSpotsSection = () => {
       name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
     }
     return name;
-  };
+  }, [countrySelect, regionSelect, searchValue]
+  );
 
-  const callAPI = async (pageNumber) => {
+  const callAPI = useCallback(async (pageNumber) => {
     let resp = [];
     let filterName = setFilterName();
     let searchParam = new URLSearchParams([
@@ -47,7 +48,8 @@ const ScenicSpotsSection = () => {
       resp = await getSpecificScenicSpots(countryDic[countrySelect], searchParam.toString());
     }
     return resp;
-  };
+  }, [countrySelect, setFilterName]
+  );
 
   const {
     data: scenicSpots,

@@ -11,7 +11,7 @@ const Footer = () => {
           <>
             <Icon src={YotwSmall} srcSet={`${YotwSmall} 1x, ${YotwMedium} 2x`} />
             <Text>©2021, YoTW. All Rights Reserved.</Text>
-            <Text isHidden={true}>Source：交通部PTX服務平臺</Text>
+            <Text isHidden={true}>Source:交通部PTX服務平臺</Text>
           </> :
           <Frame>
             <Icon src={YotwSmall} srcSet={`${YotwSmall} 1x, ${YotwMedium} 2x`} />

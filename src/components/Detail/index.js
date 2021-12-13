@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DetailItem, GoogleMap, Loader } from '..';
@@ -107,9 +106,13 @@ const Detail = () => {
     { text: Class || Class1 || Class2 || Class3, icon: [TagSmall, TagMedium], type: INFO_TYPE.CLASS },
   ];
 
+  /**
+   * 獲取頁面資料
+   */
   const getPageData = useCallback(async (pathName) => {
     let getFunc = () => { };
     let searchId = '';
+
     switch (pathName) {
       case 'scenicSpots':
         getFunc = getAllScenicSpots;
@@ -133,6 +136,7 @@ const Detail = () => {
         break;
     }
 
+    //檢查有無上一頁pass過來的資料，如沒有則打API取得頁面資料
     if (!location?.state) {
       let searchParam = new URLSearchParams([
         ['$top', PAGE_NUM],
@@ -154,6 +158,9 @@ const Detail = () => {
   }, [location.pathname, location.state]
   );
 
+  /**
+   * 獲取附近資料
+   */
   const getNearByData = useCallback(async (getData, searchParam, setData, type) => {
     try {
       let resp = await getData(searchParam.toString());

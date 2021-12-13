@@ -16,6 +16,9 @@ const ScenicSpotsSection = () => {
     window.scroll(0, 0);
   }, []);
 
+  /**
+   * 設定篩選地區名稱
+   */
   const setFilterName = useCallback(() => {
     let name = '';
 
@@ -55,7 +58,6 @@ const ScenicSpotsSection = () => {
     data: scenicSpots,
     hasMore,
     loading,
-    // error
   } = useHttp(searchValue, `${countrySelect},${regionSelect}`, pageNumber, callAPI);
 
   const observer = useRef();

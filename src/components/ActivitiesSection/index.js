@@ -20,6 +20,9 @@ const ActivitiesSection = () => {
     window.scroll(0, 0);
   }, []);
 
+  /**
+   * 設定篩選地區名稱
+   */
   const setFilterName = useCallback(() => {
     let name = '';
 
@@ -59,7 +62,6 @@ const ActivitiesSection = () => {
     data: activities,
     hasMore,
     loading,
-    // error
   } = useHttp(searchValue, `${countrySelect},${regionSelect}`, pageNumber, callAPI);
 
   const observer = useRef();
@@ -89,7 +91,6 @@ const ActivitiesSection = () => {
     setCountrySelect(selectCountry);
     setPageNumber(1);
   };
-
 
   const renderActivities = () => (
     activities.map((item, index) => {

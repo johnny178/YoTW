@@ -34,6 +34,8 @@ const ResultItem = React.forwardRef((props, ref) => {
     EndTime
   } = data;
   const [arrClass, setArrClass] = useState([]);
+  const id = data?.ScenicSpotID || data?.RestaurantID || data?.HotelID || data?.ActivityID;
+  const name = data?.ScenicSpotName || data?.RestaurantName || data?.HotelName || data?.ActivityName;
 
   let openTime = data?.OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (data?.OpenTime?.length > 30 ? (data?.OpenTime?.slice(0, 30) ?? '') + '...' : data?.OpenTime ?? '');
@@ -56,14 +58,14 @@ const ResultItem = React.forwardRef((props, ref) => {
   return (
     <Item
       ref={ref}
-      key={data.ID}
-      to={data.ID}
+      key={id}
+      to={id}
       state={data}
       margin={margin ?? ''}
     >
       <Image src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3} alt={Picture?.PictureDescription1} />
       <DetailCont >
-        <Name>{data?.Name?.replaceAll('.', '')}</Name>
+        <Name>{name?.replaceAll('.', '')}</Name>
         {
           Address &&
           <Line>

@@ -17,18 +17,35 @@ const Header = (props) => {
     window.scroll(0, 0);
   }, []);
 
-  let arrApi = [getAllScenicSpots, getAllActivities, getAllRestaurant, getAllHotels];
+  let arrApi = [
+    {
+      name: 'ScenicSpot',
+      func: getAllScenicSpots
+    },
+    {
+      name: 'Activity',
+      func: getAllActivities
+    },
+    {
+      name: 'Restaurant',
+      func: getAllRestaurant
+    },
+    {
+      name: 'Hotel',
+      func: getAllHotels
+    }
+  ]
 
   const searchData = async (value) => {
     setLoading(true);
     let searchData = [];
-    let searchParam = new URLSearchParams([
-      ['$filter', `Picture/PictureUrl1 ne null and contains(NAME,'${value}')`],
-      ['$format', 'JSON'],
-    ]);
 
     for (let i = 0; i < arrApi.length - 1; i++) {
-      let resp = await arrApi[i](searchParam.toString());
+      let searchParam = new URLSearchParams([
+        ['$filter', `Picture/PictureUrl1 ne null and contains(${arrApi[i].name}NAME,'${value}')`],
+        ['$format', 'JSON'],
+      ]);
+      let resp = await arrApi[i].func(searchParam.toString());
       if (resp.data.length !== 0) {
         searchData = [...searchData, ...resp.data];
       }
@@ -56,11 +73,12 @@ const Header = (props) => {
 
   const renderSearchResult = () => (
     pageData.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69') ||
-        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
-        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
-        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
-        item?.Name.includes('Test')
+      const name = item?.ScenicSpotName || item?.RestaurantName || item?.HotelName || item?.ActivityName;
+      if (item?.Picture?.PictureUrl1?.includes('210.69') ||
+        item?.Picture?.PictureUrl1?.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1?.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1?.includes('northguan-nsa') ||
+        name?.includes('Test')
       )
         return;
       return (

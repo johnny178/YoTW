@@ -23,13 +23,13 @@ const HotelSection = () => {
     let name = '';
 
     if ((regionSelect !== '全部地區' && countrySelect === '全台')) {
-      name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}') and (` : ' and (';
+      name += searchValue.length !== 0 ? ` and contains(HotelNAME,'${searchValue}') and (` : ' and (';
       regionTaiwan[regionSelect].slice(1).map((region, index) => {
         name += (index !== 0 ? ' or ' : '') + `contains(City,'${region}')`;
       });
       name += ')';
     } else {
-      name += searchValue.length !== 0 ? ` and contains(NAME,'${searchValue}')` : '';
+      name += searchValue.length !== 0 ? ` and contains(HotelNAME,'${searchValue}')` : '';
     }
     return name;
   }, [countrySelect, regionSelect, searchValue]
@@ -90,11 +90,11 @@ const HotelSection = () => {
 
   const renderHotels = () => (
     hotels.map((item, index) => {
-      if (item?.Picture?.PictureUrl1.includes('210.69') ||
-        item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
-        item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
-        item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
-        item?.Name.includes('Test')
+      if (item?.Picture?.PictureUrl1?.includes('210.69') ||
+        item?.Picture?.PictureUrl1?.includes('travel.nantou.gov.tw') ||
+        item?.Picture?.PictureUrl1?.includes('cloud.culture.tw') ||
+        item?.Picture?.PictureUrl1?.includes('northguan-nsa') ||
+        item?.HotelName?.includes('Test')
       )
         return;
 

@@ -33,6 +33,7 @@ const DetailItem = ({ data, margin, sectionName }) => {
     EndTime
   } = data;
   const [arrClass, setArrClass] = useState([]);
+  const name = data?.ScenicSpotName || data?.RestaurantName || data?.HotelName || data?.ActivityName;
 
   let openTime = data?.OpenTime === 'Sun 24 hours；Mon 24 hours；Tue 24 hours；Wed 24 hours；Thu 24 hours；Fri 24 hours；Sat 24 hours' ?
     '全天候開放' : (data?.OpenTime?.length > 30 ? (data?.OpenTime?.slice(0, 30) ?? '') + '...' : data?.OpenTime ?? '');
@@ -61,7 +62,7 @@ const DetailItem = ({ data, margin, sectionName }) => {
     >
       <Image src={Picture?.PictureUrl1 || Picture?.PictureUrl2 || Picture?.PictureUrl3} alt={Picture?.PictureDescription1} />
       <DetailCont>
-        <Name>{data?.Name?.replaceAll('.', '')}</Name>
+        <Name>{name?.replaceAll('.', '')}</Name>
         {
           Address &&
           <Line>

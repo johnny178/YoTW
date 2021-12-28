@@ -58,7 +58,6 @@ const Detail = () => {
 
   const location = useLocation();
   const {
-    Name,
     Address,
     Phone,
     OpenTime,
@@ -82,6 +81,7 @@ const Detail = () => {
     Organizer,
   } = pageData || {};
   const isMapFullWidth = !TravelInfo && !ParkingInfo;
+  const name = pageData?.ScenicSpotName || pageData?.RestaurantName || pageData?.HotelName || pageData?.ActivityName;
 
   const parseIsoDatetime = dtstr => {
     var dt = dtstr.split(/[: T-]/).map(parseFloat);
@@ -205,11 +205,12 @@ const Detail = () => {
           <ItemsBlock>
             {
               data.map((item, index) => {
-                if (item?.Picture?.PictureUrl1.includes('210.69') ||
-                  item?.Picture?.PictureUrl1.includes('travel.nantou.gov.tw') ||
-                  item?.Picture?.PictureUrl1.includes('cloud.culture.tw') ||
-                  item?.Picture?.PictureUrl1.includes('northguan-nsa') ||
-                  item?.Name.includes('Test')
+                const name = item?.ScenicSpotName || item?.RestaurantName || item?.HotelName || item?.ActivityName;
+                if (item?.Picture?.PictureUrl1?.includes('210.69') ||
+                  item?.Picture?.PictureUrl1?.includes('travel.nantou.gov.tw') ||
+                  item?.Picture?.PictureUrl1?.includes('cloud.culture.tw') ||
+                  item?.Picture?.PictureUrl1?.includes('northguan-nsa') ||
+                  name?.includes('Test')
                 )
                   return;
 
@@ -239,7 +240,7 @@ const Detail = () => {
     <Container>
       <Frame>
         <DetailCont>
-          <Title1>{Name}</Title1>
+          <Title1>{name}</Title1>
           {
             Infos.map(item => {
               if (!item.text) return;
@@ -277,7 +278,7 @@ const Detail = () => {
         <GoogleMap
           isMapFullWidth={isMapFullWidth}
           position={Position}
-          name={Name}
+          name={name}
         />
       </Frame>
       {renderNearbySection(scenicSpotsData, '看看附近的景點', 'scenicSpots')}
